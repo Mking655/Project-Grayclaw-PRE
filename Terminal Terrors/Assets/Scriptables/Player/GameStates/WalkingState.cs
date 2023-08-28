@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class WalkingState : GameState
 {
+    public static int walkingFOV = 80;
+    [SerializeField]
+    private Camera cam;
     //assumes use of FPS controller prefab.
     [SerializeField]
     private GameObject FPSController;
@@ -12,5 +15,13 @@ public class WalkingState : GameState
     {
         base.activate();
         FPSController.SetActive(true);
+        //lock cursor in fps mode
+        Cursor.lockState = CursorLockMode.Locked;
+        cam.fieldOfView = walkingFOV;
+    }
+    public override void deactivate() 
+    { 
+        base.deactivate();
+        FPSController.SetActive(false);
     }
 }

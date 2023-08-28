@@ -8,6 +8,9 @@ public class GameEventListener : MonoBehaviour
 {
     public GameEvent gameEvent;
     public UnityEvent onEventTriggered;
+    /// <summary>
+    /// Listen when unactive?
+    /// </summary>
     public bool persistent = false;
     public void OnEventTriggered()
     {

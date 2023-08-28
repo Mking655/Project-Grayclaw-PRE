@@ -5,10 +5,27 @@ using UnityEngine.Events;
 
 public abstract class GameState : MonoBehaviour
 {
+    /// summary:
+    ///     a gamemode/state the player can be in
+    ///
+    private GameStateManager manager;
+    public GameStateManager getManager()
+    {
+        return manager;
+    }
+    private void Start()
+    {
+        //Only one GameStateManager is allowed per scene using this method
+        manager = FindObjectOfType<GameStateManager>();
+        if (manager == null)
+        {
+            Debug.LogError("GameState in scene with no GameState Manager. Please add a manager to the scene.");
+        }
+    }
     [SerializeField]
-    UnityEvent activateEvent;
+    private UnityEvent activateEvent;
     [SerializeField]
-    UnityEvent deactivateEvent;
+    private UnityEvent deactivateEvent;
     [SerializeField]
     GAMESTATEID ID;
     public GAMESTATEID getID()

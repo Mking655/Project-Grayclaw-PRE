@@ -36,7 +36,6 @@ public class RemoteEndpoint : Endpoint
         network.addEndpoint(this);
         onNetworkChange.TriggerEvent();
         state = STATE.online;
-        network.print();
     }
 
     public override void disconnect()

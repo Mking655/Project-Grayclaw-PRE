@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaptopPOV : MonoBehaviour
+public class ComputerPOV : MonoBehaviour
 {
     public GameObject cam;
     public float turnSpeed = 4.0f;

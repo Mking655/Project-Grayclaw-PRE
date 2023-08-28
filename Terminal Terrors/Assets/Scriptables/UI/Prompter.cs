@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Prompter : MonoBehaviour
 {
+    [SerializeField]
+    private UnityEvent interaction;
     //only works if dectcting FPScontroller
     //Updates the reticle to represent relevant action
     public bool inRange;
@@ -19,6 +22,10 @@ public class Prompter : MonoBehaviour
         if (inRange)
         {
             gameUIManager.updateReticle(text);
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                interaction.Invoke();
+            }
         }
     }
     private void OnTriggerEnter(Collider other)

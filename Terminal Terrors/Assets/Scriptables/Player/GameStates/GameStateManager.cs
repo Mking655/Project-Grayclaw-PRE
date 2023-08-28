@@ -11,6 +11,13 @@ public enum GAMESTATEID
 }
 public class GameStateManager : MonoBehaviour
 {
+    //choose what state player should be in
+    [SerializeField]
+    private GameState start;
+    private void Start()
+    {
+        changeState(start);
+    }
     [SerializeField]
     private List<GameState> gameStates = new List<GameState>();
     private GameState activeState;
@@ -22,18 +29,19 @@ public class GameStateManager : MonoBehaviour
     /// Changes the player's gameState(gamemode) by enumerating through all given gamestates.
     /// </summary>
     /// <param name="gAMESTATEID">The intended game state.</param>
-    public void changeState(GAMESTATEID gAMESTATEID)
+    public void changeState(GameState state)
     {
         //varible for chcking if gameState exists
         GameState temp = activeState;
         activeState = null;
         foreach (GameState gameState in gameStates)
         {
-            if(gameState.getID() == gAMESTATEID)
+            if(gameState == state)
             {
                 //update refrence varible, then do any setup
                 activeState = gameState;
                 activeState.activate();
+                Debug.Log("gameState changed to " + gameState.getID());
             }
             else
             {
@@ -46,7 +54,7 @@ public class GameStateManager : MonoBehaviour
         {
             activeState = temp;
             activeState.activate();
-            Debug.LogError("GameState " + gAMESTATEID + " does not exist in scene. Reverting...");
+            Debug.LogError("GameState " + state.getID() + " does not exist in scene. Reverting...");
         }
     }
 }

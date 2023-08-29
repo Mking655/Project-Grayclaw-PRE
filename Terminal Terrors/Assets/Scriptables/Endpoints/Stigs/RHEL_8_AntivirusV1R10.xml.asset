@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d5441932a79a242bd2c5fabe63f2d6, type: 3}
+  m_Name: RHEL_8_AntivirusV1R10.xml
+  m_EditorClassIdentifier: 
+  errorList:
+  - severity: 0
+    name: RHEL_AV-001
+    description: 'Antivirus is hindered by inadequate permissions to computer. '
+  - severity: 0
+    name: RHEL_AV-002
+    description: 'Setting "allow neural net" is enabled. For now, we cannot allow
+      assets beyond "the Playground" (with the excepttion of GGY). '
+  - severity: 0
+    name: RHEL_AV-003
+    description: Antivirus is out of date. Please patch to prevent any vulnerabilities.
+  - severity: 1
+    name: RHEL_AV-004
+    description: Antivirus is missing libraries. To achieve full funtionality, please
+      intall the missing packages.
+  - severity: 1
+    name: RHEL_AV-005
+    description: '"GGY" files are mistakenly flagged as malicious. '
+  - severity: 2
+    name: RHEL_AV-006
+    description: Current virus containment encryption is indequate please update
+      to new guidlines.

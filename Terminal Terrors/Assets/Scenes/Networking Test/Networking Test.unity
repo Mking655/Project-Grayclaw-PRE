@@ -130,6 +130,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 850085253}
     m_Modifications:
+    - target: {fileID: 509276790283067501, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 859049415924526999, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: cam
       value: 
@@ -182,6 +210,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2298126084683366561, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2298126084683366561, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2660456923914679268, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -214,6 +250,38 @@ PrefabInstance:
       propertyPath: walkingState
       value: 
       objectReference: {fileID: 343800390}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 426107801}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3875389705249198018, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -318,6 +386,18 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 920503950}
+    - target: {fileID: 6631114910254125705, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[0].m_Text
+      value: RHEL_8_AntiVirus_STIGV1R10.xml
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631114910254125705, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[1].m_Text
+      value: RHEL_8_settings_STIGV1R10.xml
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631114910254125705, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[2].m_Text
+      value: RHEL_8_firewall_STIGV1R10.xml
+      objectReference: {fileID: 0}
     - target: {fileID: 8749192264000838472, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1095,7 +1175,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activateEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 426107801}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   deactivateEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1132,7 +1224,7 @@ GameObject:
   - component: {fileID: 426107802}
   - component: {fileID: 426107806}
   m_Layer: 5
-  m_Name: --Canvas
+  m_Name: --Main Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3147,6 +3239,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 850085253}
     m_Modifications:
+    - target: {fileID: 509276790283067501, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 859049415924526999, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: cam
       value: 
@@ -3199,6 +3319,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2298126084683366561, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2298126084683366561, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2660456923914679268, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3231,6 +3359,38 @@ PrefabInstance:
       propertyPath: walkingState
       value: 
       objectReference: {fileID: 343800390}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 426107801}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3875389705249198018, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3335,6 +3495,18 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 920503950}
+    - target: {fileID: 6631114910254125705, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[0].m_Text
+      value: RHEL_8_AntiVirus_STIGV1R10.xml
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631114910254125705, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[1].m_Text
+      value: RHEL_8_settings_STIGV1R10.xml
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631114910254125705, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[2].m_Text
+      value: RHEL_8_firewall_STIGV1R10.xml
+      objectReference: {fileID: 0}
     - target: {fileID: 8749192264000838472, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4269,6 +4441,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 850085253}
     m_Modifications:
+    - target: {fileID: 509276790283067501, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708034171600706349, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 859049415924526999, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: cam
       value: 
@@ -4321,6 +4521,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2298126084683366561, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2298126084683366561, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2660456923914679268, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4353,6 +4561,38 @@ PrefabInstance:
       propertyPath: walkingState
       value: 
       objectReference: {fileID: 343800390}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 426107801}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180874318873421415, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: activateEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3875389705249198018, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4457,6 +4697,22 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 920503950}
+    - target: {fileID: 6631114910254125705, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[0].m_Text
+      value: RHEL_8_AntiVirus_STIGV1R10.xml
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631114910254125705, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[1].m_Text
+      value: RHEL_8_settings_STIGV1R10.xml
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631114910254125705, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[2].m_Text
+      value: RHEL_8_firewall_STIGV1R10.xml
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671405923726061537, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_text
+      value: RHEL_8_AntiVirus_STIGV1R10.xml
+      objectReference: {fileID: 0}
     - target: {fileID: 8749192264000838472, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

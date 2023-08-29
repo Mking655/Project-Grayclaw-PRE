@@ -20,7 +20,7 @@ public class ComputerPOV : MonoBehaviour
         MouseAiming();
     }
     //calculate cam borders
-    private void OnEnable()
+    private void Awake()
     {
         localMinY = transform.localEulerAngles.y + minTurnAngle;
         localMaxY = transform.localEulerAngles.y + maxTurnAngle;

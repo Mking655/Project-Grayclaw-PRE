@@ -10,6 +10,9 @@ public enum STATE
     offline,
     hardened
 }
+/// <summary>
+/// Base script which represents a device that is connected to the network and needs to be fixed.
+/// </summary>
 public abstract class Endpoint : MonoBehaviour
 {
     public string endpointName;

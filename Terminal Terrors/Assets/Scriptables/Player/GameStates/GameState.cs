@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// a gamemode/state the player can be in
+/// </summary>
 public abstract class GameState : MonoBehaviour
 {
-    /// summary:
-    ///     a gamemode/state the player can be in
-    ///
     private GameStateManager manager;
     public GameStateManager getManager()
     {

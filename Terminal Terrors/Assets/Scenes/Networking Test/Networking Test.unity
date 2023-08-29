@@ -328,7 +328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3875389705249198029, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_Name
-      value: WorkPC 1 (2)
+      value: WorkPC 3
       objectReference: {fileID: 0}
     - target: {fileID: 4317821717887215572, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_AnchorMax.y
@@ -386,6 +386,26 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 920503950}
+    - target: {fileID: 6136560018467601308, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: ErrorBias
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136560018467601308, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: endpointIP
+      value: 10.0.0.10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136560018467601308, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: endpointName
+      value: Work PC 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136560018467601308, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: STIGS.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136560018467601308, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: STIGS.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9d4e7f0528f008b43b2811a56963e192, type: 2}
     - target: {fileID: 6631114910254125705, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_Options.m_Options.Array.data[0].m_Text
       value: RHEL_8_AntiVirus_STIGV1R10.xml
@@ -397,6 +417,10 @@ PrefabInstance:
     - target: {fileID: 6631114910254125705, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_Options.m_Options.Array.data[2].m_Text
       value: RHEL_8_firewall_STIGV1R10.xml
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021680398044960577, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8749192264000838472, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3437,7 +3461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3875389705249198029, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_Name
-      value: WorkPC 1 (1)
+      value: WorkPC 2
       objectReference: {fileID: 0}
     - target: {fileID: 4317821717887215572, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3495,6 +3519,26 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 920503950}
+    - target: {fileID: 6136560018467601308, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: ErrorBias
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136560018467601308, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: endpointIP
+      value: 10.0.0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136560018467601308, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: endpointName
+      value: Work PC 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136560018467601308, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: STIGS.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136560018467601308, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: STIGS.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9d4e7f0528f008b43b2811a56963e192, type: 2}
     - target: {fileID: 6631114910254125705, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_Options.m_Options.Array.data[0].m_Text
       value: RHEL_8_AntiVirus_STIGV1R10.xml
@@ -3506,6 +3550,10 @@ PrefabInstance:
     - target: {fileID: 6631114910254125705, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_Options.m_Options.Array.data[2].m_Text
       value: RHEL_8_firewall_STIGV1R10.xml
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021680398044960577, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8749192264000838472, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4697,6 +4745,18 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 920503950}
+    - target: {fileID: 6136560018467601308, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: ErrorBias
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136560018467601308, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: STIGS.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136560018467601308, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: STIGS.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9d4e7f0528f008b43b2811a56963e192, type: 2}
     - target: {fileID: 6631114910254125705, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_Options.m_Options.Array.data[0].m_Text
       value: RHEL_8_AntiVirus_STIGV1R10.xml
@@ -4711,7 +4771,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6671405923726061537, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_text
-      value: RHEL_8_AntiVirus_STIGV1R10.xml
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021680398044960577, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8749192264000838472, guid: d37c8c3c0d081d849a496d697ee37bbf, type: 3}
       propertyPath: m_AnchorMax.y

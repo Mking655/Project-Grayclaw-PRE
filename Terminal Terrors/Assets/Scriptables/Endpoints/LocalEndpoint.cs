@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 [RequireComponent(typeof(Prompter))]
-public class RemoteEndpoint : Endpoint
+public class LocalEndpoint : Endpoint
 {
     //dont worry about text implementation
     Prompter prompter;

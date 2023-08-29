@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EndpointState : GameState
 {
-    public static int interactingFOV = 30;
     [SerializeField]
     public GameState walkingState;
     [SerializeField]
@@ -23,7 +22,6 @@ public class EndpointState : GameState
     {
         base.activate();
         Cursor.lockState = CursorLockMode.None;
-        Debug.Log(Cursor.lockState);
-        cam.fieldOfView = interactingFOV;
+        cam.fieldOfView = PlayerSettings.InteractingFOV;
     }
 }

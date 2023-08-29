@@ -21,6 +21,10 @@ public class STIG : ScriptableObject
         private severity severity;
         [SerializeField]
         private string name;
+        public string getName()
+        {
+            return name;
+        }
         [SerializeField]
         private string description;
         public STIGerror(severity severity, string name, string description)
@@ -31,5 +35,9 @@ public class STIG : ScriptableObject
         }
     }
     [SerializeField]
-    public List<STIGerror> errorList { get; private set; }
+    private List<STIGerror> errorList;
+    public List<STIGerror> getErrorList()
+    {
+        return errorList;
+    }
 }

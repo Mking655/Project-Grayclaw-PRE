@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// Populates a dropdown with the STIGS of a given endpoint
+/// </summary>
 [RequireComponent(typeof(TMP_Dropdown))]
 public class STIGDropdown : MonoBehaviour
 {
     [SerializeField]
-    private List<STIG> stigs = new List<STIG>();
+    private Endpoint endpoint;
     public STIG selectedSTIG { get; private set; }
     private TMP_Dropdown dropdown;
     private void Awake()
@@ -22,11 +24,11 @@ public class STIGDropdown : MonoBehaviour
         dropdown.ClearOptions();
 
         // Create a new list of options from the endpoints in the network
-        TMP_Dropdown.OptionData[] options = new TMP_Dropdown.OptionData[stigs.Count];
+        TMP_Dropdown.OptionData[] options = new TMP_Dropdown.OptionData[endpoint.STIGS.Count];
 
-        for (int i = 0; i < stigs.Count; i++)
+        for (int i = 0; i < endpoint.STIGS.Count; i++)
         {
-            options[i] = new TMP_Dropdown.OptionData(stigs[i].name);
+            options[i] = new TMP_Dropdown.OptionData(endpoint.STIGS[i].name);
         }
 
         // Set the options for the dropdown
@@ -34,6 +36,6 @@ public class STIGDropdown : MonoBehaviour
     }
     private void OnDropdownValueChanged(int index)
     {
-        selectedSTIG = stigs[index];
+        selectedSTIG = endpoint.STIGS[index];
     }
 }

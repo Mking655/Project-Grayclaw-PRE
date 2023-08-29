@@ -4,7 +4,7 @@ Welcome to Terminal Terrors! Play as a freshly minted cyber security specialist,
 # Features
 - realistic cyber security and network hardening expirence in FNAF
 - story driven cutscenes
-- Full 3d with free roam
+- Full 3d FNAF game with free roam
 - multiple unlockable endings
 - unique Glamrock animatonic interactions
 - an ability to see Security Breaches's Pizza Plex with a pair of jaded eyes

@@ -19,12 +19,10 @@ public class STIG : ScriptableObject
     {
         [SerializeField]
         private severity severity;
+        public severity GetSeverity() { return severity; }
         [SerializeField]
         private string name;
-        public string getName()
-        {
-            return name;
-        }
+        public string getName() { return name; }
         [SerializeField]
         private string description;
         public STIGerror(severity severity, string name, string description)

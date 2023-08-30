@@ -24,6 +24,7 @@ public abstract class Endpoint : MonoBehaviour
     public List<STIG> STIGS;
     //2 Diensional array where first dimension corresponds to STIG type, second dimension corresponds to error
     public List<List<STIG.STIGerror>> STIGErrors;
+    public List<STIG.STIGerror> SelectedErrorList;
     protected STATE state;
     //Determines if the endpoint should have more or less errors in the set range. In short, it is how poor the computer was set up.
     [SerializeField]

@@ -15,7 +15,8 @@ public class UIApplicationManager : MonoBehaviour
     /// </summary>
     /// <param name="window"> the desired application/window you want to appear</param>
     public void changeApplication(GameObject window) 
-    { 
+    {
+        bool foundWindow = false;
         foreach(GameObject app in UIApplications)
         {
             if(app != window)
@@ -25,10 +26,12 @@ public class UIApplicationManager : MonoBehaviour
             if(app == window)
             {
                 app.SetActive(true);
-                return;
+                foundWindow = true;
             }
         }
-        //if code reaches this point, that means the desired window was not found
-        Debug.LogError("Desired window not found.");
+        if (!foundWindow)
+        {
+            Debug.LogError("Desired window not found.");
+        }
     }
 }

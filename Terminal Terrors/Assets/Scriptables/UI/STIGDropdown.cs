@@ -13,7 +13,7 @@ public class STIGDropdown : MonoBehaviour
     private Endpoint endpoint;
     public STIG selectedSTIG { get; private set; }
     private TMP_Dropdown dropdown;
-    private void Awake()
+    private void Start()
     {
         dropdown = GetComponent<TMP_Dropdown>();
         PopulateDropdown();
@@ -34,8 +34,9 @@ public class STIGDropdown : MonoBehaviour
         // Set the options for the dropdown
         dropdown.options = new List<TMP_Dropdown.OptionData>(options);
     }
-    private void OnDropdownValueChanged(int index)
+    public void OnDropdownValueChanged()
     {
-        selectedSTIG = endpoint.STIGS[index];
+        endpoint.SelectedErrorList = endpoint.STIGErrors[gameObject.GetComponent<TMP_Dropdown>().value];
+        Debug.Log(endpoint.SelectedErrorList.Count + " errors detected in STIG index " + gameObject.GetComponent<TMP_Dropdown>().value + " for " + endpoint.endpointName);
     }
 }

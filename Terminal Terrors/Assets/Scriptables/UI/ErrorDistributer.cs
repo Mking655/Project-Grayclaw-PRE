@@ -17,8 +17,15 @@ public class ErrorDistributer : MonoBehaviour
     [SerializeField]
     private Endpoint endPoint;
     public List<STIG.STIGerror> errors;
-    //TODO
-    private STIG.STIGerror selectedError;
+    /// <summary>
+    /// When one of the error buttons is selected, in index of the error button relative to the other ones is passed into the Endpoint's selectedErrorIndex varible. It is critical that the order of the error buttons matches that of the slectedErrorList. 
+    /// </summary>
+    /// <param name="self">Refrence to the GameObject calling this method. This should always be an error button.</param>
+    public void onErrorSelected(GameObject self)
+    {
+        endPoint.selectedErrorIndex = self.transform.GetSiblingIndex();
+        Debug.Log("Slected error index: " + endPoint.selectedErrorIndex);
+    }
     public void removeAllChildren()
     {
         // Loop through all child transforms of the current GameObject

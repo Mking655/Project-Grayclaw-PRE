@@ -20,11 +20,30 @@ public class STIG : ScriptableObject
         [SerializeField]
         private severity severity;
         public severity GetSeverity() { return severity; }
+        public string GetSeverityName() 
+        {
+            string output = "";
+            output += severity.ToString(); 
+            switch (severity)//add info explaining CAT rating system
+            { 
+                case severity.CATI:
+                    output += " (minor)";
+                    break;
+                case severity.CATII:
+                    output += " (serious)";
+                    break;
+                case severity.CATIII:
+                    output += " (critical)";
+                    break;
+            }
+            return output;
+        }
         [SerializeField]
         private string name;
         public string getName() { return name; }
         [SerializeField]
         private string description;
+        public string getDescription() { return description; }
         public STIGerror(severity severity, string name, string description)
         {
             this.severity = severity;

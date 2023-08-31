@@ -5139,7 +5139,7 @@ GameObject:
   - component: {fileID: 4343199670068313650}
   - component: {fileID: 7696943051964436739}
   m_Layer: 6
-  m_Name: exit
+  m_Name: exit (define)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

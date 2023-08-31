@@ -14,11 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   errorList:
   - severity: 0
-    name: FUCK
-    description: 
+    name: RHEL_AV-001
+    description: 'Antivirus is hindered by inadequate permissions to computer. '
   - severity: 0
-    name: 'YOU '
-    description: 
+    name: RHEL_AV-002
+    description: 'Setting "allow neural net" is enabled. For now, nerual nets cannot
+      be allowed out of "the Playground" (with the excepttion of GGY). '
   - severity: 0
-    name: C#
-    description: 
+    name: RHEL_AV-003
+    description: Antivirus is out of date. Please patch to prevent any vulnerabilities.
+  - severity: 1
+    name: RHEL_AV-004
+    description: Antivirus is missing libraries. To achieve full funtionality, please      
+      intall the missing packages.
+  - severity: 1
+    name: RHEL_AV-005
+    description: '"GGY" files are mistakenly flagged as malicious. '
+  - severity: 2
+    name: RHEL_AV-006
+    description: Current virus containment encryption is indequate. Please update
+      to new guidlines.

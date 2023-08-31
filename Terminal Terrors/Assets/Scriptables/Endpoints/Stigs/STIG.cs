@@ -27,13 +27,13 @@ public class STIG : ScriptableObject
             switch (severity)//add info explaining CAT rating system
             { 
                 case severity.CATI:
-                    output += " (minor)";
+                    output += " (Critical)";
                     break;
                 case severity.CATII:
-                    output += " (serious)";
+                    output += " (Serious)";
                     break;
                 case severity.CATIII:
-                    output += " (critical)";
+                    output += " (Minor)";
                     break;
             }
             return output;

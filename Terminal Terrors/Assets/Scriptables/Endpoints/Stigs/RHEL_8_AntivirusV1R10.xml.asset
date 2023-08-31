@@ -30,7 +30,11 @@ MonoBehaviour:
   - severity: 1
     name: RHEL_AV-005
     description: '"GGY" files are mistakenly flagged as malicious. '
-  - severity: 2
+  - severity: 1
     name: RHEL_AV-006
     description: Current virus containment encryption is indequate. Please update
       to new guidlines.
+  - severity: 1
+    name: RHEL_AV-007
+    description: '"SmartContain" feature is enabled. This feature is in a beta phase,
+      and is not currently deigned safe for FazPCs.'

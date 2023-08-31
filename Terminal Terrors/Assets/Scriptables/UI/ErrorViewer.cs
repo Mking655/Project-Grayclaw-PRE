@@ -27,10 +27,10 @@ public class ErrorViewer : MonoBehaviour
     /// </summary>
     public void updateDisplay()
     {
-        //if no error is slected, clear text
-        if (endpoint.SelectedErrorList[endpoint.selectedErrorIndex] == null)
+        //if no error is selected, clear text
+        if (endpoint.selectedErrorIndex == -1)
         {
-            errorNameText.text = "";
+            errorNameText.text = "No vulnerability Selected";
             errorSeverityText.text = "";
             errorDescriptionText.text = "";
         }

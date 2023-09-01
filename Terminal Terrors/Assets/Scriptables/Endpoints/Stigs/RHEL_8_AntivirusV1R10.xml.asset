@@ -18,8 +18,8 @@ MonoBehaviour:
     description: 'Antivirus is hindered by inadequate permissions to computer. '
   - severity: 0
     name: RHEL_AV-002
-    description: 'Setting "allow neural net" is enabled. For now, nerual nets cannot
-      be allowed out of "the Playground" (with the excepttion of GGY). '
+    description: 'Setting "allow neural net" is enabled. For now, neural nets cannot
+      be allowed on FazPCs(with the excepttion of GGY). '
   - severity: 0
     name: RHEL_AV-003
     description: Antivirus is out of date. Please patch to prevent any vulnerabilities.

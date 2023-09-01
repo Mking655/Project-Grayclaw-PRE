@@ -27,7 +27,12 @@ public abstract class Endpoint : MonoBehaviour
     [HideInInspector]
     public List<STIG.STIGerror> SelectedErrorList;
     [HideInInspector]
-    public int selectedErrorIndex;
+    //-1 means no error selected
+    public int selectedErrorIndex = -1;
+    public void clearSelectedErrorIndex()
+    {
+        selectedErrorIndex = -1;
+    }
     protected STATE state;
     //Determines if the endpoint should have more or less errors in the set range. In short, it is how poor the computer was set up.
     [SerializeField]

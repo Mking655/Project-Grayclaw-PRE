@@ -5,7 +5,6 @@ using TMPro;
 [RequireComponent(typeof(Prompter))]
 public class LocalEndpoint : Endpoint
 {
-    //dont worry about text implementation
     Prompter prompter;
     private void Awake()
     {

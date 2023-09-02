@@ -27,18 +27,21 @@ public class ErrorViewer : MonoBehaviour
     /// </summary>
     public void updateDisplay()
     {
-        //if no error is selected, clear text
-        if (endpoint.selectedErrorIndex == -1)
-        {
-            errorNameText.text = "No vulnerability Selected";
-            errorSeverityText.text = "";
-            errorDescriptionText.text = "";
-        }
         if (errorNameText != null && errorSeverityText != null && errorDescriptionText != null) 
         {
-            errorNameText.text = endpoint.SelectedErrorList[endpoint.selectedErrorIndex].getName();
-            errorSeverityText.text = endpoint.SelectedErrorList[endpoint.selectedErrorIndex].GetSeverityName();
-            errorDescriptionText.text = endpoint.SelectedErrorList[endpoint.selectedErrorIndex].getDescription();
+            //if no error is selected, clear text
+            if (endpoint.selectedErrorIndex == -1)
+            {
+                errorNameText.text = "No error Selected";
+                errorSeverityText.text = "";
+                errorDescriptionText.text = "";
+            }
+            else
+            {
+                errorNameText.text = endpoint.SelectedErrorList[endpoint.selectedErrorIndex].getName();
+                errorSeverityText.text = endpoint.SelectedErrorList[endpoint.selectedErrorIndex].GetSeverityName();
+                errorDescriptionText.text = endpoint.SelectedErrorList[endpoint.selectedErrorIndex].getDescription();
+            }
         }
         else
         {

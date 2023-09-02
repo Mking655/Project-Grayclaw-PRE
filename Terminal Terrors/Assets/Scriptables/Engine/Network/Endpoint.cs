@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.NetworkInformation;
+using Unity.VisualScripting;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
+using TMPro;
 using static STIG;
+using UnityEngine.Events;
 
 public enum STATE
 {
@@ -20,15 +24,38 @@ public abstract class Endpoint : MonoBehaviour
     public string endpointName;
     public string endpointIP;
     public GameEvent onNetworkChange;
-    //TODO: this should be read only
     public List<STIG> STIGS;
-    //2 Diensional array where first dimension corresponds to STIG type, second dimension corresponds to error
+    //2 Dimensional array where first dimension corresponds to STIG type, second dimension corresponds to error
     public List<List<STIG.STIGerror>> STIGErrors;
+    public UnityEvent onHardened;
+    [SerializeField]
+    private TMP_Dropdown STIGSelector;
     [HideInInspector]
     public List<STIG.STIGerror> SelectedErrorList;
     [HideInInspector]
     //-1 means no error selected
     public int selectedErrorIndex = -1;
+    /// <summary>
+    /// Method that fixes an error
+    /// </summary>
+    public void removeSelectedSTIGErrors()
+    {
+        int selectedSTIGIndex = STIGSelector.value;
+        //Check if dropdowns and error list are in order
+        if (STIGErrors[selectedSTIGIndex] == SelectedErrorList) 
+        {
+            STIGErrors.Remove(SelectedErrorList);
+            STIGS.RemoveAt(selectedSTIGIndex);
+            if(STIGErrors.Count == 0)
+            {
+                markAsHardened();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Dropdown order does not match STIGError two dimensional list order");
+        }
+    }
     public void clearSelectedErrorIndex()
     {
         selectedErrorIndex = -1;
@@ -38,7 +65,12 @@ public abstract class Endpoint : MonoBehaviour
     [SerializeField]
     [Range(0f, 1f)]
     private float ErrorBias;
-
+    public void markAsHardened()
+    {
+        disconnect();
+        onHardened.Invoke();
+        Debug.Log("you have hardened endpoint: " + endpointName);
+    }
     /// <summary>
     /// Fill each STIG up with a desired range of random errors from that STIG (No repeats)
     /// </summary>

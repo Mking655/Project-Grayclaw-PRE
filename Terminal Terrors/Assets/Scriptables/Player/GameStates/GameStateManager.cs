@@ -38,10 +38,9 @@ public class GameStateManager : MonoBehaviour
         {
             if(gameState == state)
             {
-                //update refrence varible, then do any setup
+                //update reference variable, then do any setup
                 activeState = gameState;
                 activeState.activate();
-                Debug.Log("gameState changed to " + gameState.getID());
             }
             else
             {

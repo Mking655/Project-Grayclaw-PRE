@@ -8,8 +8,7 @@ public class LocalEndpoint : Endpoint
     Prompter prompter;
     private void Awake()
     {
+        connect();
         prompter = GetComponent<Prompter>();
-        //ensure endpoint is not connected at start of game
-        disconnect();
     }
 }

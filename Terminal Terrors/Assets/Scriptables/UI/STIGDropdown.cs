@@ -37,6 +37,5 @@ public class STIGDropdown : MonoBehaviour
     public void OnDropdownValueChanged()
     {
         endpoint.SelectedErrorList = endpoint.STIGErrors[gameObject.GetComponent<TMP_Dropdown>().value];
-        Debug.Log(endpoint.SelectedErrorList.Count + " errors detected in STIG index " + gameObject.GetComponent<TMP_Dropdown>().value + " for " + endpoint.endpointName);
     }
 }

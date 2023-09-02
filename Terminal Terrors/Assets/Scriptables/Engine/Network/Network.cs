@@ -7,8 +7,24 @@ public class Network : ScriptableObject
 {
     [SerializeField]
     public string netName;
+    [SerializeField]
+    private GameEvent onNetworkHardened;
+    [HideInInspector]
     public List<Endpoint> endPoints = new List<Endpoint>();
-
+    //Ths implementation of a win state assumes only one network
+    public void checkIfHardened()
+    {
+        foreach (Endpoint ep in endPoints) 
+        { 
+            if(ep.getHardened() == false) 
+            {
+                Debug.Log("you have yet to harden: " + ep.endpointName);
+                return;
+            }
+        }
+        Debug.Log("Network Hardened. You win.");
+        onNetworkHardened.TriggerEvent();
+    }
     public void addEndpoint(Endpoint endPoint)
     {
         endPoints.Add(endPoint);

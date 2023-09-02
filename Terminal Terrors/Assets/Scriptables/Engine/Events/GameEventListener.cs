@@ -9,7 +9,7 @@ public class GameEventListener : MonoBehaviour
     public GameEvent gameEvent;
     public UnityEvent onEventTriggered;
     /// <summary>
-    /// Listen when unactive?
+    /// Listen when inactive?
     /// </summary>
     public bool persistent = false;
     public void OnEventTriggered()
@@ -17,7 +17,7 @@ public class GameEventListener : MonoBehaviour
         onEventTriggered.Invoke();
     }
 
-    // code for persistant listeners
+    // code for persistent listeners
     private void Awake()
     {
         if (persistent == true)
@@ -34,7 +34,7 @@ public class GameEventListener : MonoBehaviour
         }
     }
 
-    // code for non persistant listeners
+    // code for non persistent listeners
     void OnEnable()
     {
         if(persistent == false)

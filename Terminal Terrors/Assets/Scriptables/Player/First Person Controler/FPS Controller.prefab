@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5649091615846782169}
   - component: {fileID: 3311525279947068235}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera Follow Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,9 +60,9 @@ GameObject:
   - component: {fileID: 4972207451244310888}
   - component: {fileID: 4972207451244310890}
   - component: {fileID: 3662828055439919540}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FPS Controller
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 4972207451262071938}
   - component: {fileID: 4972207451262071940}
   - component: {fileID: 4972207451262071941}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

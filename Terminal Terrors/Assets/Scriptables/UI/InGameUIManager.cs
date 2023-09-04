@@ -6,6 +6,7 @@ using TMPro;
 public class InGameUIManager : Singleton
 {
     public TMP_Text reticle;
+    public TMP_Text room;
     private void Start()
     {
         resetReticle();

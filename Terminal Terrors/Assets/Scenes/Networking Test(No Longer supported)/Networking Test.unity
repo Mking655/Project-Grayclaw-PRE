@@ -750,9 +750,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 4972207450463713314}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   deactivateEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4972207450463713314}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   ID: 0
   cam: {fileID: 920503950}
   FPSController: {fileID: 1384581448}
@@ -4984,6 +5008,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c07748b7c653f4e49b5553bfd5732cb2, type: 3}
+--- !u!1 &4972207450463713314 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2052024797110397860, guid: c07748b7c653f4e49b5553bfd5732cb2, type: 3}
+  m_PrefabInstance: {fileID: 4972207450463713313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6825087077729041992
 PrefabInstance:
   m_ObjectHideFlags: 0

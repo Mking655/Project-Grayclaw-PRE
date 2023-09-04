@@ -13,7 +13,6 @@ public class WalkingState : GameState
     public override void activate()
     {
         base.activate();
-        FPSController.SetActive(true);
         //lock cursor in fps mode
         Cursor.lockState = CursorLockMode.Locked;
         cam.fieldOfView = PlayerSettings.FOV;
@@ -21,6 +20,5 @@ public class WalkingState : GameState
     public override void deactivate() 
     { 
         base.deactivate();
-        FPSController.SetActive(false);
     }
 }

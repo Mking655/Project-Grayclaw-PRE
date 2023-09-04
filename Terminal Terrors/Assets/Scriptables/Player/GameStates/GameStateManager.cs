@@ -21,7 +21,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField]
     private List<GameState> gameStates = new List<GameState>();
     private GameState activeState;
-    GameState getActiveState()
+    public GameState getActiveState()
     {
         return activeState;
     }

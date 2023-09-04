@@ -9,4 +9,11 @@ public class Vent : MonoBehaviour
     {
         isLocked = locked;
     }
+    /// <summary>
+    /// Checks if the player is there.
+    /// </summary>
+    public void check()
+    {
+        Debug.Log("roxy checked vent: " + gameObject.name);
+    }
 }

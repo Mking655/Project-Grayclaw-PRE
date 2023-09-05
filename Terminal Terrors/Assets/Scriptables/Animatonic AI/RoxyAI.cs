@@ -9,7 +9,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(AudioSource))]
 public class RoxyAI : MonoBehaviour
 {
-    enum State
+    public enum State
     {
         idling,
         pinging,
@@ -17,6 +17,10 @@ public class RoxyAI : MonoBehaviour
     }
     private GameStateManager playerStateManager;
     private State currentState;
+    public State getCurrentState()
+    {
+        return currentState;
+    }
     [SerializeField]
     private NavMeshAgent navMeshAgent;
     [SerializeField]
@@ -37,57 +41,26 @@ public class RoxyAI : MonoBehaviour
     private void setState(RoxyAI.State state)
     {
         currentState = state;
-        if(state == RoxyAI.State.idling)
-        {
-            isIdling = true;
-            isPinging = false;
-            isAttacking = false;
-        }
-        if(state == RoxyAI.State.pinging)
-        {
-            isIdling = false;
-            isPinging = true;
-            isAttacking = false;
-        }
-        if(state == RoxyAI.State.attacking)
-        {
-            isIdling = false;
-            isPinging = false;
-            isAttacking = true;
-        }
     }
     public float getPingTime()
     {
         return pingTime;
     }
     private float idleTime;
-    private bool isIdling;
-    public bool getIdling()
-    {
-        return isIdling;
-    }
-    private bool isPinging;
-    public bool getPinging()
-    {
-        return isPinging;
-    }
     private bool hasStartedPing;
-    private bool isAttacking;
     private bool hasStartedAttacking;
-    public bool getAttacking()
-    {
-        return isAttacking;
-    }
     void Stop()
     {
         navMeshAgent.isStopped = true;
         navMeshAgent.speed = 0;
+        gameObject.GetComponent<AudioSource>().Stop();
     }
 
     void Move()
     {
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speed;
+        gameObject.GetComponent<AudioSource>().Play();
     }
 
     private void Start()
@@ -99,25 +72,26 @@ public class RoxyAI : MonoBehaviour
         
         //Assuming only one per scene
         playerStateManager = FindFirstObjectByType<GameStateManager>();
+        
         // Initialize variables
         idleTime = Random.Range(minWaitTime, maxWaitTime);
+
         setState(RoxyAI.State.idling);
     }
 
     private void Update()
     {
-        //Whenever one of these is set to true, the rest must be false
-        if (isIdling)
+        switch (currentState)
         {
-            idle();
-        }
-        if (isPinging)
-        {
-            ping();
-        }
-        if (isAttacking)
-        {
-            attack();
+            case RoxyAI.State.idling:
+                idle();
+                break;
+            case RoxyAI.State.pinging:
+                ping();
+                break;
+            case RoxyAI.State.attacking:
+                attack();
+                break;
         }
     }
 
@@ -147,7 +121,7 @@ public class RoxyAI : MonoBehaviour
         pingCountdownUI.SetActive(true);
         yield return new WaitForSeconds(pingTime);
         //if player is moving and is in FPS mode
-        if ((Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0) && playerStateManager.getActiveState().gameObject.name == "--Walking Player")
+        if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && playerStateManager.getActiveState().gameObject.name == "--Walking Player")
         {
             Debug.Log("Ping detected movement");
             setState(RoxyAI.State.attacking);
@@ -179,7 +153,7 @@ public class RoxyAI : MonoBehaviour
             if (findClosestVent() != null)
             {
                 Debug.Log("You're cooked");
-                gameObject.GetComponent<AudioSource>().PlayOneShot(foundYouSound);
+                Move();
                 Vent closestVent = findClosestVent();
                 navMeshAgent.SetDestination(closestVent.transform.position);
 

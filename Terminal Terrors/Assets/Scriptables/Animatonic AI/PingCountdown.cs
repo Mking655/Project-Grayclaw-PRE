@@ -26,7 +26,7 @@ public class PingCountdown : MonoBehaviour
         yield return new WaitForSeconds(countdownTime);
         yield return null;
         //if ping was successful and Roxy is in attack mode, notify player.
-        if (roxyAI.getAttacking()) 
+        if (roxyAI.getCurrentState() == RoxyAI.State.attacking) 
         {
             notifyPlayer();
         }

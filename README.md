@@ -1,5 +1,5 @@
-# SecurityBreach-TT(Working Title)
-Welcome to Terminal Terrors(Working Title)! Play as a freshly minted cyber security specialist, thrust into the enigmatic world of the Pizza Plex – a façade of opulence masking internal decay. Audit the system's vulnerabilities while descending into the building’s dark underbelly, where quick IOT fixes cause eerie anomalies and provoke restless spirits. These spirits have no mouth, and must scream. As a lone employee, can you audit and harden the massive, rotting skeleton that upholds this Pizza Plex? What things will you let out in the mistakes you make? Will you let the spirits' voices be heard, or will you silence them forever?
+# SecurityBreach-Firewall
+Welcome to Firewall! Play as a freshly minted cyber security specialist, thrust into the enigmatic world of the Pizza Plex – a façade of opulence masking internal decay. Audit the system's vulnerabilities while descending into the building’s dark underbelly, where quick IOT fixes cause eerie anomalies and provoke restless spirits. These spirits have no mouth, and must scream. As a lone employee, can you audit and harden the massive, rotting skeleton that upholds this Pizza Plex? What things will you let out in the mistakes you make? Will you let the spirits' voices be heard, or will you silence them forever?
 
 Trello: https://trello.com/b/Kj59yjDj/sb-fangame
 

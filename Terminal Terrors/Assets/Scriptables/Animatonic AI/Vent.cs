@@ -12,8 +12,9 @@ public class Vent : MonoBehaviour
     [HideInInspector]
     public bool playerInRoom = false;
     [SerializeField]
-    private string roomName;
+    public string roomName;
     [SerializeField]
+    private GameObject roxyCheckingObject;
     public void setLocked(bool locked)
     {
         isLocked = locked;
@@ -21,9 +22,15 @@ public class Vent : MonoBehaviour
     /// <summary>
     /// Checks if the player is there.
     /// </summary>
-    public void check()
+    public bool check()
     {
-        Debug.Log("roxy checked vent: " + gameObject.name);
+        Debug.Log("roxy checked vent: " + roomName);
+        roxyCheckingObject.SetActive(true);
+        return playerInRoom;
+    }
+    public void leave()
+    {
+        roxyCheckingObject.SetActive(false);
     }
     //assuming only one in-game ui manager
     private void OnTriggerEnter(Collider other)

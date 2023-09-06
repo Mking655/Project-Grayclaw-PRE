@@ -142,6 +142,10 @@ PrefabInstance:
       propertyPath: roomName
       value: Quad2
       objectReference: {fileID: 0}
+    - target: {fileID: 3114805164024365897, guid: 0765c97e004107a4a9705e5e8572c3d2, type: 3}
+      propertyPath: roxyCheckingObject
+      value: 
+      objectReference: {fileID: 1518480698}
     - target: {fileID: 6906009878183871862, guid: 0765c97e004107a4a9705e5e8572c3d2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -220,6 +224,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6906009878183871862, guid: 0765c97e004107a4a9705e5e8572c3d2, type: 3}
   m_PrefabInstance: {fileID: 70018509}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &82223537 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8760895478565181218, guid: 0765c97e004107a4a9705e5e8572c3d2, type: 3}
+  m_PrefabInstance: {fileID: 5683198329784699125}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &100838602
 GameObject:
@@ -2027,6 +2036,10 @@ PrefabInstance:
       propertyPath: roomName
       value: Main
       objectReference: {fileID: 0}
+    - target: {fileID: 3114805164024365897, guid: 0765c97e004107a4a9705e5e8572c3d2, type: 3}
+      propertyPath: roxyCheckingObject
+      value: 
+      objectReference: {fileID: 1536506888}
     - target: {fileID: 6906009878183871862, guid: 0765c97e004107a4a9705e5e8572c3d2, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2117,6 +2130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0eb37b07cac6904cb9f6776bb07e9c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1518480698 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8760895478565181218, guid: 0765c97e004107a4a9705e5e8572c3d2, type: 3}
+  m_PrefabInstance: {fileID: 70018509}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1532511383
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2134,7 +2152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 778061766007388016, guid: 97a72e6426aae2b49a70356e41964bb0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 778061766007388017, guid: 97a72e6426aae2b49a70356e41964bb0, type: 3}
       propertyPath: m_RootOrder
@@ -2198,6 +2216,11 @@ PrefabInstance:
       objectReference: {fileID: 930998770}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97a72e6426aae2b49a70356e41964bb0, type: 3}
+--- !u!1 &1536506888 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8760895478565181218, guid: 0765c97e004107a4a9705e5e8572c3d2, type: 3}
+  m_PrefabInstance: {fileID: 1478877275}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1692671575
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,6 +2337,10 @@ PrefabInstance:
       propertyPath: roomName
       value: Quad3
       objectReference: {fileID: 0}
+    - target: {fileID: 3114805164024365897, guid: 0765c97e004107a4a9705e5e8572c3d2, type: 3}
+      propertyPath: roxyCheckingObject
+      value: 
+      objectReference: {fileID: 2084435506}
     - target: {fileID: 6906009878183871862, guid: 0765c97e004107a4a9705e5e8572c3d2, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2512,6 +2539,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d915ff4560be62b4683a6ec9d25146c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2084435506 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8760895478565181218, guid: 0765c97e004107a4a9705e5e8572c3d2, type: 3}
+  m_PrefabInstance: {fileID: 1840961031}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2085894774
 GameObject:
   m_ObjectHideFlags: 0
@@ -2530,7 +2562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2085894775
 Transform:
   m_ObjectHideFlags: 0
@@ -4831,6 +4863,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: adc9192e258abbd439a71eedbcdb5fb1, type: 3}
     - target: {fileID: 1900645944126153284, guid: 9a5455b1caea76c46921fa64e3a1d458, type: 3}
+      propertyPath: ventCheckTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900645944126153284, guid: 9a5455b1caea76c46921fa64e3a1d458, type: 3}
       propertyPath: pingCountdownUI
       value: 
       objectReference: {fileID: 718904208}
@@ -4903,9 +4939,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7951313622091145450, guid: 9a5455b1caea76c46921fa64e3a1d458, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951313622091145450, guid: 9a5455b1caea76c46921fa64e3a1d458, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 1b6436098348c70478f4701ec885e4b8, type: 3}
+    - target: {fileID: 7951313622091145450, guid: 9a5455b1caea76c46921fa64e3a1d458, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7951313622091145450, guid: 9a5455b1caea76c46921fa64e3a1d458, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
@@ -9610,6 +9654,10 @@ PrefabInstance:
       propertyPath: roomName
       value: Quad1
       objectReference: {fileID: 0}
+    - target: {fileID: 3114805164024365897, guid: 0765c97e004107a4a9705e5e8572c3d2, type: 3}
+      propertyPath: roxyCheckingObject
+      value: 
+      objectReference: {fileID: 82223537}
     - target: {fileID: 6906009878183871862, guid: 0765c97e004107a4a9705e5e8572c3d2, type: 3}
       propertyPath: m_RootOrder
       value: 0

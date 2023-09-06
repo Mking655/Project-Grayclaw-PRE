@@ -34,6 +34,8 @@ public class RoxyAI : MonoBehaviour
     [SerializeField]
     private float pingTime;
     [SerializeField]
+    private float ventCheckTime;
+    [SerializeField]
     private GameObject pingCountdownUI;
     [SerializeField]
     private AudioClip foundYouSound;
@@ -67,15 +69,15 @@ public class RoxyAI : MonoBehaviour
     {
         //Navigation Setup
         navMeshAgent = GetComponent<NavMeshAgent>();
-        Move();
         navMeshAgent.SetDestination(origin.transform.position);
-        
+        navMeshAgent.stoppingDistance = 0;
+
         //Assuming only one per scene
         playerStateManager = FindFirstObjectByType<GameStateManager>();
-        
+
         // Initialize variables
         idleTime = Random.Range(minWaitTime, maxWaitTime);
-
+        Move();
         setState(RoxyAI.State.idling);
     }
 
@@ -94,12 +96,20 @@ public class RoxyAI : MonoBehaviour
                 break;
         }
     }
-
+    //must be acomanied by "Move()" before call
     private void idle()
     {
+        navMeshAgent.SetDestination(origin.transform.position);
+        Debug.Log(navMeshAgent.remainingDistance);
+        if(navMeshAgent.pathPending == false && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        {
+            Stop();
+        }
+
         idleTime -= Time.deltaTime;
         if (idleTime <= 0)
         {
+            Stop();
             setState(RoxyAI.State.pinging);
             idleTime = Random.Range(minWaitTime, maxWaitTime);
         }
@@ -107,6 +117,7 @@ public class RoxyAI : MonoBehaviour
 
     private void ping()
     {
+        Stop();
         //Start state
         if (!hasStartedPing)
         {
@@ -129,6 +140,7 @@ public class RoxyAI : MonoBehaviour
         else
         {
             Debug.Log("No movement detected");
+            Move();
             setState(RoxyAI.State.idling);
         }
         hasStartedPing = false;
@@ -144,6 +156,35 @@ public class RoxyAI : MonoBehaviour
         }
         return null;
     }
+    IEnumerator startAttack()
+    {
+        Move();
+        navMeshAgent.SetDestination(findClosestVent().transform.position);
+        Vent closestVent = findClosestVent();
+        Debug.Log("Starting Attack on " + closestVent.roomName);
+        while (navMeshAgent.pathPending || navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance)
+        {
+            Debug.Log(navMeshAgent.remainingDistance + " meters until she reaches you");
+            yield return null;
+        }
+        Stop();
+        //Will keep checking on update call until end of time limit
+        float remainingTime = ventCheckTime;
+        while(remainingTime > 0) 
+        {
+            bool caught = closestVent.check();
+            if (caught)
+            {
+                Debug.Log("You have been caught");
+            }
+            remainingTime -= Time.deltaTime;
+            yield return null;
+        }
+        Move();
+        setState(RoxyAI.State.idling);
+        hasStartedAttacking = false;
+        closestVent.leave();
+    }
     private void attack()
     {
         //Start state
@@ -152,15 +193,13 @@ public class RoxyAI : MonoBehaviour
             hasStartedAttacking = true;
             if (findClosestVent() != null)
             {
-                Debug.Log("You're cooked");
-                Move();
-                Vent closestVent = findClosestVent();
-                navMeshAgent.SetDestination(closestVent.transform.position);
-
+                StartCoroutine(startAttack());
             }
             else
             {
                 Debug.Log("You can't hide forever");
+                //exit this state
+                Move();
                 setState(RoxyAI.State.idling);
                 hasStartedAttacking = false;
             }

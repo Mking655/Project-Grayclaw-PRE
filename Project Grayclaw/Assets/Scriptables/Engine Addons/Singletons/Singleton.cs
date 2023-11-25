@@ -3,24 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //TODO persistant singleton
-public class Singleton : MonoBehaviour
+public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
 {
-    //Code taken from: https://gamedevbeginner.com/singletons-in-unity-the-right-way/
-    public static Singleton Instance { get; private set; }
+    //https://gamedevbeginner.com/singletons-in-unity-the-right-way/
+    public static T Instance { get; private set; }
     private void Awake()
     {
-        // If there is an instance, and it's not me, delete myself.
-
-        if (Instance != null && Instance != this)
+        if (Instance == null)
         {
+            Instance = this as T;
+        }
+        if(Instance != this)
+        {
+            Debug.LogWarning(gameObject.name + " is an illegal singleton instance. Removing singleton component...");
             Destroy(this);
         }
-        else
-        {
-            Instance = this;
-        }
     }
-    //reset instance so instance is not persistent accross scenes
+    //reset instance so instance is not persistent across scenes
     private void OnDestroy()
     {
         Instance = null;

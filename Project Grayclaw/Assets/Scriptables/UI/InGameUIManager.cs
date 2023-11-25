@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class InGameUIManager : Singleton
+public class InGameUIManager : Singleton <InGameUIManager>
 {
     public TMP_Text reticle;
     public TMP_Text room;

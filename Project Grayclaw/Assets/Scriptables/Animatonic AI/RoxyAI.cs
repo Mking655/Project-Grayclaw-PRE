@@ -15,7 +15,6 @@ public class RoxyAI : MonoBehaviour
         pinging,
         attacking
     }
-    private GameStateManager playerStateManager;
     private State currentState;
     public State getCurrentState()
     {
@@ -71,9 +70,6 @@ public class RoxyAI : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.SetDestination(origin.transform.position);
         navMeshAgent.stoppingDistance = 0;
-
-        //Assuming only one per scene
-        playerStateManager = FindFirstObjectByType<GameStateManager>();
 
         // Initialize variables
         idleTime = Random.Range(minWaitTime, maxWaitTime);
@@ -132,7 +128,8 @@ public class RoxyAI : MonoBehaviour
         pingCountdownUI.SetActive(true);
         yield return new WaitForSeconds(pingTime);
         //if player is moving and is in FPS mode
-        if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && playerStateManager.getActiveState().gameObject.name == "--Walking Player")
+        //TODO: Depending on the POV, this may not apply
+        if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
         {
             Debug.Log("Ping detected movement");
             setState(RoxyAI.State.attacking);

@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
         for (int i = 0; i < number; i++)
         {
             int randomIndex = (int)Random.Range(0, endpointsCopy.Count);
-            endpointsCopy[randomIndex].generateVulnerability();
+            endpointsCopy[randomIndex].generateError();
             brokenEndpoints.Add(endpointsCopy[randomIndex]);
             endpointsCopy.Remove(endpointsCopy[randomIndex]);
         }

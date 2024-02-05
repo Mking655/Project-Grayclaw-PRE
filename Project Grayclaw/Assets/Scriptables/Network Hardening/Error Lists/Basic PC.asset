@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc9660515c032b0449ca4af2e25f6780, type: 3}
+  m_Name: Basic PC
+  m_EditorClassIdentifier: 
+  errorsList:
+  - {fileID: -8480290743250387859, guid: dcb26f876832e394daa093447c811e85, type: 3}
+  - {fileID: 8667538307078053991, guid: f5d0f051fa228214e95b32d290b3623d, type: 3}
+  possibleTypes: 0200000000000000

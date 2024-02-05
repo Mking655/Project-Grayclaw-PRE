@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Collider))]
 public class Prompter : MonoBehaviour
 {
     [SerializeField]
     private UnityEvent interaction;
-    //only works if dectcting FPScontroller
+    //only works if detecting FPScontroller
     //Updates the reticle to represent relevant action
     public bool inRange;
     public string text;
@@ -30,14 +31,14 @@ public class Prompter : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == FPSCamera.playername)
+        if (other.gameObject.tag == "Player")
         {
             inRange = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == FPSCamera.playername)
+        if (other.gameObject.tag == "Player")
         {
             inRange = false;
             gameUIManager.resetReticle();

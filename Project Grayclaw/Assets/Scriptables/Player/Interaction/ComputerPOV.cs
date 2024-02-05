@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class ComputerPOV : MonoBehaviour
 {
-    public GameObject cam;
+    private void OnEnable()
+    {
+        FindAnyObjectByType<InGameUIManager>().resetReticle();
+        Cursor.lockState = CursorLockMode.None;
+        //Set the fov of the main camera
+        gameObject.GetComponent<POV>().getManager().cam.gameObject.GetComponent<Camera>().fieldOfView = PlayerSettings.InteractingFOV;
+    }
+    [Tooltip("For if you want to disable this component locally, leave true if not.")]
+    [SerializeField]
+    public bool localActive = true;
     public float turnSpeed = 4.0f;
     public float minTurnAngle = -90.0f;
     public float maxTurnAngle = 90.0f;
@@ -17,7 +26,15 @@ public class ComputerPOV : MonoBehaviour
     //handles how the camera looks at the laptop
     private void Update()
     {
-        MouseAiming();
+        if (localActive)
+        {
+            MouseAiming();
+        }
+        //Go back
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            POVManager.Instance.changeState(POVManager.Instance.previousActiveState);
+        }
     }
     //calculate cam borders
     private void Awake()
@@ -38,8 +55,5 @@ public class ComputerPOV : MonoBehaviour
         rotY = Mathf.Clamp(rotY, localMinY, localMaxY);
         // rotate camera
         transform.localEulerAngles = new Vector3 (-rotX, rotY, 0);
-        cam.transform.eulerAngles = transform.eulerAngles;
-        //update position
-        cam.transform.position = gameObject.transform.position;
     }
 }

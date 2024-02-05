@@ -3,14 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
-
-enum Vulnerability
-{
-    None,
-    OOD,
-    Malware,
-    NP
-}
+using System.IO;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// Base script which represents a device that is connected to the network and needs to be fixed.
@@ -18,22 +12,18 @@ enum Vulnerability
 /// Require computer script.
 public class Endpoint : MonoBehaviour
 {
-    [SerializeField]
-    private Vulnerability vulnerability;
-    private void Awake()
+    public ErrorList errorList;
+    public Transform errorSpawnPoint;
+    private Error error;
+    public void generateError()
     {
-        //Fixed by default
-        vulnerability = Vulnerability.None;
-    }
-    
-    public void generateVulnerability()
-    {
-        int randVal = Random.Range((int)Vulnerability.OOD, (int)Vulnerability.NP + 1);//Must update this range every time you add a Vulnerability.
-        vulnerability = (Vulnerability)randVal;
-        Debug.Log("Gave " + gameObject.name + " vulnerability " + vulnerability.ToString());
+        int randVal = Random.Range(0, errorList.possibleTypes.Count);   
+        error = Instantiate(errorList.getErrors()[errorList.possibleTypes[randVal]], errorSpawnPoint);
+        Debug.Log("Given error of type: " + errorList.possibleTypes[randVal] + " to gameobject:" + gameObject.name);
     }
     public void fix()
     {
+        error.Fix();
         GameManager.Instance.removeBrokenEndpoint(this);
     }
 }

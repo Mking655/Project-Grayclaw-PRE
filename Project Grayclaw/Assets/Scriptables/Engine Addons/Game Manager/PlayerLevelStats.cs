@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Player Level Stats")]
+[CreateAssetMenu(menuName = "My Assets/Player Level Stats")]
 public class PlayerLevelStats : ScriptableObject
 {
     [Header("Persistent Stats")]

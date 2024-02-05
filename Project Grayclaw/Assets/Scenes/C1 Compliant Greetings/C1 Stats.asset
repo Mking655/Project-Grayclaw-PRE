@@ -15,4 +15,4 @@ MonoBehaviour:
   bestTime: 0
   bestRank: 0
   currentTime: 0
-  brokenEndpointNumber: 2
+  brokenEndpointNumber: 1

@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: 0c093660029d14e4086b354407ab4f7a
+guid: d5700df4415e238468d46f27071b690f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - onNetworkChange: {fileID: 11400000, guid: 50095180bc4380940827015627c15cfc, type: 2}
-  - network: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 [RequireComponent(typeof(GameEventListener))]
+
 public class EndpointDropdown : MonoBehaviour
 {
+    /* TODO: POSSIBLY modify to be a general dynamic options display
     //modified from Chat GPT 3.5
     TMP_Dropdown dropdown;
     public Network network; // Reference to your Network scriptable object
@@ -43,4 +45,5 @@ public class EndpointDropdown : MonoBehaviour
         // Use the index to retrieve the selected endpoint and do something with it
         // For example: Endpoint selectedEndpoint = network.endpoints[index];
     }
+    */
 }

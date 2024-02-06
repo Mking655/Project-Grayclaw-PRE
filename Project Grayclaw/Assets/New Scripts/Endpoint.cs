@@ -29,6 +29,6 @@ public class Endpoint : MonoBehaviour
 [System.Serializable]
 public class vulnerability
 {
-    public Minigame correspondingMinigame;
+    public GameObject correspondingMinigamePrefab;//must have Minigame component
     public string name;
 }

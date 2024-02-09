@@ -476,7 +476,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1768820851}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -791,7 +791,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0247ce9a4e51ab448992c76b51718c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 6ad591534cbc7ec41b55ad3978e51aa5, type: 2}
 --- !u!1001 &1151116660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -945,7 +944,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: cfaa26362dfc0fc4caae7ce7f8ee7d94, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cfaa26362dfc0fc4caae7ce7f8ee7d94, type: 3}
       propertyPath: m_LocalScale.x
@@ -1105,7 +1104,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9af05c6c90a24df40b95b6c3746f4ec2, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9af05c6c90a24df40b95b6c3746f4ec2, type: 3}
       propertyPath: m_LocalScale.x
@@ -1277,7 +1276,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1768820851}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1465962185
 MonoBehaviour:
@@ -1332,7 +1331,7 @@ GameObject:
   - component: {fileID: 1768820851}
   - component: {fileID: 1768820852}
   m_Layer: 0
-  m_Name: Endpoint
+  m_Name: POV_Endpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1350,11 +1349,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1893930128}
   - {fileID: 1392437615}
   - {fileID: 1271653650}
   - {fileID: 257917425}
   - {fileID: 1465962184}
-  - {fileID: 1893930128}
   m_Father: {fileID: 5645247604701390128}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 195, z: 0}
@@ -1370,8 +1369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c093660029d14e4086b354407ab4f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  errorList: {fileID: 11400000, guid: 44de4b691e1f85e43a63cfaaeef89f43, type: 2}
-  errorSpawnPoint: {fileID: 257917425}
 --- !u!1001 &1792887355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1528,7 +1525,7 @@ GameObject:
   - component: {fileID: 1893930129}
   - component: {fileID: 1893930130}
   m_Layer: 0
-  m_Name: Pov
+  m_Name: EP Pov
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1547,7 +1544,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1768820851}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1893930129
 MonoBehaviour:
@@ -1941,7 +1938,7 @@ GameObject:
   - component: {fileID: 2784280298554372385}
   - component: {fileID: 4986254963645904564}
   m_Layer: 8
-  m_Name: Camera Follow Point
+  m_Name: FPS Pov
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2105,7 +2102,7 @@ GameObject:
   - component: {fileID: 5645247603596366592}
   - component: {fileID: 4144398154460031966}
   m_Layer: 8
-  m_Name: FPS Controller
+  m_Name: POV_FPS Controller
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2202,7 +2199,7 @@ GameObject:
   - component: {fileID: 5645247604701390128}
   - component: {fileID: 5645247604701390135}
   m_Layer: 0
-  m_Name: --Player Manager
+  m_Name: --Player POV Manager
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

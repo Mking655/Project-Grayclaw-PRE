@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 public class POVManager : Singleton<POVManager>
 {
-    //choose what state player should be in
     [SerializeField]
-    private POV startingPOV;
+    private POV startingPOV;//choose what state player should be in
     [SerializeField]
-    public PlayerCamera cam;
+    public PlayerCamera cam;//define in inspector
+    [HideInInspector]
+    public List<POV> POVs = new List<POV>();//TODO populate automaticly on start
+    [HideInInspector]
+    public POV previousActiveState;
+    private POV activeState;
     private void Start()
     {
+        //TODO
+        POVs = new List<POV>(FindObjectsByType<POV>(FindObjectsSortMode.None));
         previousActiveState = null;
         if (startingPOV == null)
         {
@@ -20,10 +26,6 @@ public class POVManager : Singleton<POVManager>
         }
         changeState(startingPOV);
     }
-
-    public List<POV> POVs = new List<POV>();
-    public POV previousActiveState;
-    private POV activeState;
     public POV getActiveState()
     {
         return activeState;

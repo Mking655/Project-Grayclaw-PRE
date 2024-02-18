@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class ComputerPOV : MonoBehaviour
 {
-    private void OnEnable()
-    {
-        FindAnyObjectByType<InGameUIManager>().resetReticle();
-        Cursor.lockState = CursorLockMode.None;
-        //Set the fov of the main camera
-        gameObject.GetComponent<POV>().getManager().cam.gameObject.GetComponent<Camera>().fieldOfView = PlayerSettings.InteractingFOV;
-    }
     [Tooltip("For if you want to disable this component locally, leave true if not.")]
     [SerializeField]
     public bool localActive = true;
@@ -23,6 +16,23 @@ public class ComputerPOV : MonoBehaviour
     private float localMaxY;
     private float rotX;
     private float rotY;
+    private Camera mainCam;
+    //calculate cam borders
+    private void Awake()
+    {
+        mainCam = gameObject.GetComponent<POV>().manager.cam.gameObject.GetComponent<Camera>();
+        localMinY = transform.localEulerAngles.y + minTurnAngle;
+        localMaxY = transform.localEulerAngles.y + maxTurnAngle;
+        localMinX = transform.localEulerAngles.x + minTurnAngle;
+        localMaxX = transform.localEulerAngles.x + maxTurnAngle;
+        //apply negitives if applicable
+    }
+    private void OnEnable()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        //Set the fov of the main camera
+        mainCam.fieldOfView = PlayerSettings.InteractingFOV;
+    }
     //handles how the camera looks at the laptop
     private void Update()
     {
@@ -33,17 +43,8 @@ public class ComputerPOV : MonoBehaviour
         //Go back
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            POVManager.Instance.changeState(POVManager.Instance.previousActiveState);
+            POVManager.Instance.changePOV(POVManager.Instance.previousActivePOV);
         }
-    }
-    //calculate cam borders
-    private void Awake()
-    {
-        localMinY = transform.localEulerAngles.y + minTurnAngle;
-        localMaxY = transform.localEulerAngles.y + maxTurnAngle;
-        localMinX = transform.localEulerAngles.x + minTurnAngle;
-        localMaxX = transform.localEulerAngles.x + maxTurnAngle;
-        //apply negitives if applicable
     }
     void MouseAiming()
     {

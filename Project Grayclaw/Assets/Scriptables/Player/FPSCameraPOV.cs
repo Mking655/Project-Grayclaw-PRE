@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(POV))]
 
-public class FPSCamera : MonoBehaviour
+public class FPSCameraPOV : MonoBehaviour
 {
-    //make sure this is the same as parent GameObject name
-    public static string playername = "FPS Controller";
     //Code modified from: https://gamedevacademy.org/unity-3d-first-and-third-person-view-tutorial/#Section_1_First_Person_View
     public Transform bodyTransform;
     
@@ -14,16 +12,16 @@ public class FPSCamera : MonoBehaviour
     public float minTurnAngle = -90.0f;
     public float maxTurnAngle = 90.0f;
     private float rotX;
-    private void Start()
+    private Camera mainCam;
+    private void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        mainCam = gameObject.GetComponent<POV>().manager.cam.gameObject.GetComponent<Camera>();
+        Debug.Log(mainCam.name);
     }
     private void OnEnable()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        //Set the fov of the main camera
-        gameObject.GetComponent<POV>().getManager().cam.gameObject.GetComponent<Camera>().fieldOfView = PlayerSettings.FOV;
-        FindAnyObjectByType<InGameUIManager>().resetReticle();
+        mainCam.fieldOfView = PlayerSettings.FOV;
     }
     void Update()
     {

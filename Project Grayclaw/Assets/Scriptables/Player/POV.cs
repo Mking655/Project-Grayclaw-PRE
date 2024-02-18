@@ -4,19 +4,14 @@ using UnityEngine;
 using UnityEngine.Events;
 
 /// <summary>
-/// a gamemode/state the player can be in
+/// A gamemode/POV the player can be in
 /// </summary>
 public class POV: MonoBehaviour
 {
-    private POVManager manager;
-    public POVManager getManager()
-    {
-        return manager;
-    }
+    public POVManager manager = POVManager.Instance;
+
     private void Awake()
     {
-        //Only one GameStateManager is allowed per scene using this method
-        manager = POVManager.Instance;
         manager.POVs.Add(this);
     }
     [SerializeField]
@@ -24,18 +19,25 @@ public class POV: MonoBehaviour
     [SerializeField]
     private UnityEvent deactivateEvent;
     /// <summary>
-    /// When the player is in this gameState, this function will be called every frame by the local scene's GameStateManager.
+    /// Called when player exits this gamePOV.
     /// </summary>
-
     public void deactivate()
     { 
         deactivateEvent.Invoke(); 
     }
     /// <summary>
-    /// called when player enters this gameState
+    /// Called when player enters this gamePOV. Additional logic outside the unity event will usally be handled in the corresponing script attached to the POV. 
     /// </summary>
     public void activate()
     { 
         activateEvent.Invoke(); 
     }
+    private void OnDestroy()
+    {
+        if (manager != null)
+        {
+            manager.POVs.Remove(this);
+        }
+    }
+
 }

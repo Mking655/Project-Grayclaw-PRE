@@ -6,14 +6,15 @@ using UnityEngine;
 /// </summary>
 public abstract class Minigame : MonoBehaviour
 {
+    [HideInInspector]
     public MinigameManager manager; //This will be injected by the minigame manager when the Minigame is instanciated
 
     //must call these two functions for it to be a valid minigame
-    public void Win()
+    public virtual void Win()
     {
         manager.WinMinigame();
     }
-    public void Lose()
+    public virtual void Lose()
     {
         manager.LoseMinigame();
     }

@@ -35,18 +35,16 @@ public class Vent : MonoBehaviour
     //assuming only one in-game ui manager
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == FPSCamera.playername)
+        if (other.gameObject.tag == "Player")
         {
             playerInRoom = true;
-            FindAnyObjectByType<InGameUIManager>().room.text = roomName;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == FPSCamera.playername)
+        if (other.gameObject.tag == "Player")
         {
             playerInRoom = false;
-            FindAnyObjectByType<InGameUIManager>().room.text = "";
         }
     }
 }

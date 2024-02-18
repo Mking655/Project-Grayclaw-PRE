@@ -56,6 +56,7 @@ public class MinigameManager : MonoBehaviour
     public void LoseMinigame()
     {
         // Logic for losing the minigame
+        systemCore.selectedEndpoint.ChangeState(EndpointState.Vulnerable);
     }
 
 }

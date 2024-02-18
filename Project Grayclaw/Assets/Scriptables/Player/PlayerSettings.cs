@@ -14,9 +14,5 @@ public static class PlayerSettings
     /// <summary>
     /// FOV when player is in interacting mode
     /// </summary>
-    public static int InteractingFOV = 35;
-    /// <summary>
-    /// Determines the maximum number of errors an endpoint can have on a given STIG. The higher, the more difficult the game.
-    /// </summary>
-    public static int maxErrors = 3;
+    public static int InteractingFOV = 45;
 }

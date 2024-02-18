@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(MinigameManager))]
@@ -9,11 +8,9 @@ public class SystemCore : MonoBehaviour
     public List<vulnerability> vulnerabilities; //Define all possible vulnerabilities the system can have in inspector
     [HideInInspector]
     public Endpoint selectedEndpoint = null;
-    public GameObject coreComputerUI; // Assign in Inspector
 
     void Start()
     {
-        coreComputerUI.SetActive(false); // Initially hide the UI
         //initialize the endpoints by giving them a random vulnerability from the defined list
         foreach (Endpoint ep in endpoints)
         {
@@ -25,6 +22,7 @@ public class SystemCore : MonoBehaviour
             else
             {
                 ep.vulnerability = vulnerabilities[randomIndex];
+                Debug.Log("Given vulnerability: " + vulnerabilities[randomIndex].correspondingMinigamePrefab.name + " to: " + ep.gameObject.name);
             }
         }
     } 
@@ -43,7 +41,6 @@ public class SystemCore : MonoBehaviour
     //TODO
     public void ActivateCoreComputer()
     {
-        coreComputerUI.SetActive(true);
         // Logic to display endpoints on the UI map
     }
 
@@ -53,6 +50,7 @@ public class SystemCore : MonoBehaviour
     {
         // Activate the fixing minigame UI
         // Based on the minigame result, call endpoint.ChangeState appropriately
+        gameObject.GetComponent<MinigameManager>().StartMinigame();
     }
 }
 

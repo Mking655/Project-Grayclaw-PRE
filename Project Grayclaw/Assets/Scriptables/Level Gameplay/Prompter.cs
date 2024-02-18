@@ -8,23 +8,29 @@ public class Prompter : MonoBehaviour
 {
     [SerializeField]
     private UnityEvent interaction;
+    [SerializeField]
+    private UnityEvent exit;
     //only works if detecting FPScontroller
     //Updates the reticle to represent relevant action
     public bool inRange;
     public string text;
-    InGameUIManager gameUIManager;
-    private void Awake()
+    public GameObject visualCue;
+    private void Start()
     {
-        //ASSUMES ONLY ONE PER SCENE
-        gameUIManager = FindAnyObjectByType<InGameUIManager>();
+        visualCue.SetActive(false);
     }
     private void Update()
     {
         if (inRange)
         {
-            gameUIManager.updateReticle(text);
-            if(Input.GetKeyDown(KeyCode.E))
+            if (Input.GetAxis("Interact") == -1)
             {
+                visualCue.SetActive(true);
+                exit.Invoke();
+            }
+            if (Input.GetAxis("Interact") == 1)
+            {
+                visualCue.SetActive(false);
                 interaction.Invoke();
             }
         }
@@ -34,6 +40,7 @@ public class Prompter : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             inRange = true;
+            visualCue.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -41,11 +48,11 @@ public class Prompter : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             inRange = false;
-            gameUIManager.resetReticle();
+            visualCue.SetActive(false);
         }
     }
     private void OnDisable()
     {
-        gameUIManager.resetReticle();
+        visualCue.SetActive(false);
     }
 }

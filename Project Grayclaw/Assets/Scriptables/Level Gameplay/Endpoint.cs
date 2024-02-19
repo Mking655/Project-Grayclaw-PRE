@@ -8,7 +8,7 @@ public class Endpoint : MonoBehaviour
 {
     public EndpointState state = EndpointState.Vulnerable;
     public string criticalFunction; // Description of the endpoint's function
-    public GameObject visualIndicator; // Optional: Visual feedback for the state
+    public Animator visualIndicator; // Optional: Visual feedback for the state
     [HideInInspector]
     public vulnerability vulnerability;
     private void Start()
@@ -29,23 +29,22 @@ public class Endpoint : MonoBehaviour
 
     void UpdateVisualIndicator()
     {
-        if(gameObject.GetComponent<Image>() == null)
+        if(visualIndicator == null)
         {
-            Debug.Log("temporary endpoint representation doesnt have an image");
+            Debug.Log("endpoint representation doesnt have a visual indicator");
             return;
         }
-        Image image = gameObject.GetComponent<Image>();
         // Update visualIndicator based on the current state
         switch (state) 
         {
             case EndpointState.Fixed:
-                image.color = Color.green;
+                visualIndicator.SetInteger("State", 2);
                 break;
             case EndpointState.Vulnerable:
-                image.color = Color.yellow;
+                visualIndicator.SetInteger("State", 1);
                 break;
             case EndpointState.Broken:
-                image.color = Color.red;
+                visualIndicator.SetInteger("State", 0);
                 break;
         }
     }

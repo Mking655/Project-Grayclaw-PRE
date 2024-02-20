@@ -7,12 +7,25 @@ public enum EndpointState { Fixed, Vulnerable, Broken }
 public class Endpoint : MonoBehaviour
 {
     public EndpointState state = EndpointState.Vulnerable;
+    
+    public string endpointName;
     public string criticalFunction; // Description of the endpoint's function
+    [Tooltip("Endpoint's in-world representation")]
+    public physicalEndpoint physicalRepresentation;
+    [Tooltip("Endpoint's UI representation")]
     public Animator visualIndicator; // Optional: Visual feedback for the state
     [HideInInspector]
     public vulnerability vulnerability;
-    private void Start()
+    private void Awake()
     {
+        if (physicalRepresentation == null)
+        {
+            Debug.LogError("Endpoint " + name + " has no physical representation");
+        }
+        if (visualIndicator == null)
+        {
+            Debug.LogError("Endpoint " + name + " has no ui representation");
+        }
         ChangeState(state);
     }
     // Method to change the endpoint state

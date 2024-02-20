@@ -25,9 +25,9 @@ public class MinigameManager : MonoBehaviour
             Debug.Log("Cannot start a fixing minigame if no endpoint is selected.");
             return;
         }
-        else if (systemCore.selectedEndpoint.vulnerability == null)
+        else if (systemCore.selectedEndpoint.vulnerability == null || systemCore.selectedEndpoint.state == EndpointState.Broken)
         {
-            Debug.Log("Cannot start a fixing minigame if the endpoint has no vulnerability.");
+            Debug.Log("Cannot start a fixing minigame if the endpoint has no vulnerability(fixed) or is broken.");
             return;
         }
         if (activeMinigame != null)

@@ -10,8 +10,8 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Animator))]
 public class physicalEndpoint : MonoBehaviour
 {
-    [HideInInspector]
-    public Endpoint endpoint;//injected refrence to corresponding endpoint
+    //linked endpoint
+    public Endpoint endpoint;
     [HideInInspector]
     public Animator animator;//Have physical representation change according to state
     //TODO: possible room detection and automatic assignment into room? What would a "room" script be?
@@ -20,16 +20,38 @@ public class physicalEndpoint : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        if (endpoint == null)
+        {
+            Debug.Log(gameObject.name + " has not been linked to an endpoitn on the core computer canvas");
+        }
     }
+    //with this system, the only way the endpoint can be broken is through the physical endpoint.
+    //This physical endpoint will not update to the Endpoint script's state.
+    //This should be fine, as the only case where the script updates itself is when the player patches the endpoint,
+    //which should have no physical reprsentation.
     public void breakEndpoint()
     {
+        if(endpoint.state == EndpointState.Fixed) 
+        {
+            Debug.Log("cannot break a fixed endpoint");
+            return;
+        }
         animator.SetBool("isBroken", true);
+        endpoint.ChangeState(EndpointState.Broken);
         onBreak.Invoke();
         isBroken = true;
     }
     public void fixEndpoint()
     {
-        animator.SetBool("isBroken", true);
-        isBroken = false;
+        if(endpoint.state == EndpointState.Broken)
+        {
+            animator.SetBool("isBroken", false);
+            endpoint.ChangeState(EndpointState.Vulnerable);
+            isBroken = false;
+        }
+        else
+        {
+            Debug.Log("endpoint not broken, cannot fix");
+        }
     }
 }

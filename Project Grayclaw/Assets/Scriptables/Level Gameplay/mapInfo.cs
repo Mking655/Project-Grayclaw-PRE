@@ -9,6 +9,8 @@ using TMPro;
 public class mapInfo : MonoBehaviour
 {
     [Header("Apperance")]
+    [Tooltip("Check true if this object will dynmically change over time")]
+    public bool dynamic;
     public Sprite image;
     public string title;
     public bool discovered = false;

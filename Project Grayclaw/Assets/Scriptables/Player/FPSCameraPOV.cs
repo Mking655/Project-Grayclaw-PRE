@@ -12,6 +12,7 @@ public class FPSCameraPOV : MonoBehaviour
     public float minTurnAngle = -90.0f;
     public float maxTurnAngle = 90.0f;
     private float rotX;
+    public map mAp;
     private Camera mainCam;
     private void Awake()
     {
@@ -23,9 +24,25 @@ public class FPSCameraPOV : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         mainCam.fieldOfView = PlayerSettings.FOV;
     }
+    private void OnDisable()
+    {
+        mAp.gameObject.SetActive(false);
+    }
     void Update()
     {
         MouseAiming();
+        //Can toggle map from this perspective
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            if (mAp.gameObject.activeInHierarchy)
+            {
+                mAp.gameObject.SetActive(false);
+            }
+            else
+            {
+                mAp.gameObject.SetActive(true);
+            }
+        }
     }
     void MouseAiming()
     {

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Net;
+using static UnityEditor.Progress;
 
 [RequireComponent(typeof(RectTransform))]
 /// <summary>
@@ -30,17 +31,17 @@ public class map : Singleton<map>
     mapInfo mapInfoPrefab;
     private float normalizedXSize = 1;
     private float normalizedZSize = 1;
+    private List<mapInfo> dynamicItems = new List<mapInfo>();
     private void Awake()
     {
         compileMap();
     }
-    /// <summary>
-    /// get location on canvas from location on map
-    /// </summary>
-    public Vector3 normailzeLocation(GameObject obj)
+    private void Update()
     {
-        //TODO
-        return new Vector3(0,0,0);
+        foreach(mapInfo item in dynamicItems)
+        {
+            updateMapItem(item);
+        }
     }
     /// <summary>
     /// recalculate the mapData based on what has been placed in the scene
@@ -94,6 +95,12 @@ public class map : Singleton<map>
             //inject this into map refrence for map info
             Obj.levelmap = this;
             createMapItem(Obj);
+            if (Obj.dynamic)
+            {
+                dynamicItems.Add(Obj);
+            }
+
+            //For now, reavel all items
             revealObject(Obj);
         }
 
@@ -131,15 +138,16 @@ public class map : Singleton<map>
             Vector2 baseScale = new Vector2(displaySize / 10, displaySize / 10);
 
             // Adjust scale based on the BoxCollider size (considering only x and z dimensions for a 2D map)
-            Vector2 colliderBasedScale = new Vector2(Mathf.Max(baseScale.x, boxCollider.size.x/(MaxCorner.position.x - MinCorner.position.x) * displaySize), Mathf.Max(baseScale.x, boxCollider.size.z / (MaxCorner.position.z - MinCorner.position.z) * displaySize));
+            Vector2 colliderBasedScale = new Vector2(Mathf.Max(baseScale.x, boxCollider.size.x/(MaxCorner.position.x - MinCorner.position.x) * displaySize), Mathf.Max(baseScale.y, boxCollider.size.z / (MaxCorner.position.z - MinCorner.position.z) * displaySize));
 
             // Apply the larger of the base scale or collider-based scale to ensure visibility
             itemRectTransform.sizeDelta = new Vector2(colliderBasedScale.x, colliderBasedScale.y);
         }
         else
         {
+            Vector2 baseScale = new Vector2(displaySize / 10, displaySize / 10);
             // Apply a default scale if no BoxCollider is found
-            itemRectTransform.sizeDelta = new Vector2(100, 100); // Default size
+            itemRectTransform.sizeDelta = baseScale; // Default size
         }
 
         // Additional adjustments for appearance
@@ -148,9 +156,36 @@ public class map : Singleton<map>
         info.mapInstance = item;
         item.SetActive(false);
     }
+    //TODO: move this in to mapInfo script?
+    /// <summary>
+    /// Updates all map item to map info 
+    /// </summary>
+    /// <param name="info"></param>
     public void updateMapItem(mapInfo info)
     {
+        if(info.dynamic == true)
+        {
+            // Update position
+            // Calculate the proportional position relative to Min and Max bounds
+            float xProportion = (info.transform.position.x - MinCorner.position.x) / (MaxCorner.position.x - MinCorner.position.x);
+            float zProportion = (info.transform.position.z - MinCorner.position.z) / (MaxCorner.position.z - MinCorner.position.z);
 
+            // Adjusting for the normalized canvas size
+            Vector2 canvasSize = gameObject.GetComponent<RectTransform>().sizeDelta;
+            float xPos = xProportion * canvasSize.x - (canvasSize.x * 0.5f); // Subtract half canvas size to center
+            float yPos = zProportion * canvasSize.y - (canvasSize.y * 0.5f); // Use Z for Y because it's a 2D representation
+                                             
+            // Set the instantiated item's anchored position
+            RectTransform itemRectTransform = info.mapInstance.GetComponent<RectTransform>();
+            itemRectTransform.anchoredPosition = new Vector2(xPos, yPos);
+
+            info.mapInstance.GetComponent<mapInfo>().text.text = info.title;
+            info.mapInstance.GetComponent<Image>().sprite = info.image;
+        }
+        else
+        {
+            return;
+        }
     }
     /// <summary>
     /// Reveal and item on the 2d map.

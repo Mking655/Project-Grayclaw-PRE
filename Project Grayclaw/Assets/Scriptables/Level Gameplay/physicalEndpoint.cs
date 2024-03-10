@@ -8,6 +8,7 @@ using UnityEngine.Events;
 /// TODO: give a relevant tag for ai detection.
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(mapInfo))]
 public class physicalEndpoint : MonoBehaviour
 {
     //linked endpoint

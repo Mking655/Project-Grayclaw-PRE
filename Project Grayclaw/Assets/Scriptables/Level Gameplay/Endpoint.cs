@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine.UI;
 
 public enum EndpointState { Fixed, Vulnerable, Broken }
-[RequireComponent(typeof(mapInfo))]
 
 public class Endpoint : MonoBehaviour
 {

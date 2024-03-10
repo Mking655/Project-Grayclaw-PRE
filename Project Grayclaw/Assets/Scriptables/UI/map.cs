@@ -1,7 +1,9 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+using System.Net;
 
 [RequireComponent(typeof(RectTransform))]
 /// <summary>
@@ -23,6 +25,9 @@ public class map : Singleton<map>
     [SerializeField]
     [Tooltip("the size of the canvas")]
     private float displaySize;
+    [SerializeField]
+    [Tooltip("map item Prefab used for instanciation")]
+    mapInfo mapInfoPrefab;
     private float normalizedXSize = 1;
     private float normalizedZSize = 1;
     private void Awake()
@@ -44,12 +49,30 @@ public class map : Singleton<map>
     {
         data.Reset();
 
+        //--Setup Canvas
+
+        float baseXSize = MaxCorner.position.x - MinCorner.position.x;
+        float baseZSize = MaxCorner.position.z - MinCorner.position.z;
+        //normalize canvas scale so that canvas can fit in a square of size displaysize
+        if (baseXSize >= baseZSize)
+        {
+            normalizedXSize = 1;
+            normalizedZSize = baseZSize / baseXSize;
+        }
+        else if (baseZSize > baseXSize)
+        {
+            normalizedZSize = 1;
+            normalizedXSize = baseXSize / baseZSize;
+        }
+        gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(normalizedXSize * displaySize, normalizedZSize * displaySize);
+        Debug.Log(new Vector2(normalizedXSize * displaySize, normalizedZSize * displaySize));
+
         //--Endpoint population
 
         // Find all endpoints in the scene
         Endpoint[] allEndpoints = FindObjectsOfType<Endpoint>();
 
-        // Iterate over each endpoint
+        // Iterate over each endpoint, adding it to map data and sorting by key
         foreach (Endpoint endpoint in allEndpoints)
         {
             // Get the tag of the GameObject to which the endpoint is attached
@@ -65,38 +88,77 @@ public class map : Singleton<map>
             data.endpoints[tag].Add(endpoint);
         }
 
-        //--Setup Canvas
-
-        float baseXSize = MaxCorner.position.x - MinCorner.position.x;
-        float baseZSize = MaxCorner.position.z - MinCorner.position.z;
-        //normalize canvas scale so that canvas can fit in a square of size displaysize
-        if(baseXSize >= baseZSize) 
+        //--Map population (reveals all by default)
+        foreach (mapInfo Obj in FindObjectsOfType<mapInfo>())
         {
-            normalizedXSize = 1;
-            normalizedZSize = baseZSize/baseXSize;
-        }
-        else if(baseZSize > baseXSize) 
-        {
-            normalizedZSize = 1;
-            normalizedXSize = baseXSize/baseZSize;
-        }
-        gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(normalizedXSize * displaySize, normalizedZSize * displaySize);
-        Debug.Log(new Vector2(normalizedXSize * displaySize, normalizedZSize * displaySize));
-
-        //--Create 2d representations
-        //TODO
-        // Iterate over each endpoint
-        foreach (Endpoint endpoint in allEndpoints)
-        {
-            // Assuming vulnerability.correspondingMinigame is now a GameObject prefab
-            //GameObject 2d = Instantiate(systemCore.selectedEndpoint.vulnerability.correspondingMinigamePrefab, instancationLocation);
-
-            // Optionally, adjust the instantiated UI's position/scale if necessary
-            //minigameInstance.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-            //minigameInstance.transform.localScale = Vector3.one; // Ensure scale is reset for UI elements
+            //inject this into map refrence for map info
+            Obj.levelmap = this;
+            createMapItem(Obj);
+            revealObject(Obj);
         }
 
+        //--Trigger compilation event
         onCompiled.TriggerEvent();
+
+    }
+    /// <summary>
+    /// Takes a given mapInfo class and uses it to create a mapInfoPrefab
+    /// </summary>
+    /// <param name="info"></param>
+    public void createMapItem(mapInfo info)
+    {
+        // Calculate the proportional position relative to Min and Max bounds
+        float xProportion = (info.transform.position.x - MinCorner.position.x) / (MaxCorner.position.x - MinCorner.position.x);
+        float zProportion = (info.transform.position.z - MinCorner.position.z) / (MaxCorner.position.z - MinCorner.position.z);
+
+        // Adjusting for the normalized canvas size
+        Vector2 canvasSize = gameObject.GetComponent<RectTransform>().sizeDelta;
+        float xPos = xProportion * canvasSize.x - (canvasSize.x * 0.5f); // Subtract half canvas size to center
+        float yPos = zProportion * canvasSize.y - (canvasSize.y * 0.5f); // Use Z for Y because it's a 2D representation
+
+        // Instantiate the map item prefab
+        GameObject item = Instantiate(mapInfoPrefab.gameObject, this.transform);
+
+        // Set the instantiated item's anchored position
+        RectTransform itemRectTransform = item.GetComponent<RectTransform>();
+        itemRectTransform.anchoredPosition = new Vector2(xPos, yPos);
+
+        // Check for a BoxCollider on the object and scale the map item accordingly
+        BoxCollider boxCollider = info.GetComponent<BoxCollider>();
+        if (boxCollider != null)
+        {
+            // Assume a base scale for your map items (e.g., 10x10 units for no collider)
+            Vector2 baseScale = new Vector2(displaySize / 10, displaySize / 10);
+
+            // Adjust scale based on the BoxCollider size (considering only x and z dimensions for a 2D map)
+            Vector2 colliderBasedScale = new Vector2(Mathf.Max(baseScale.x, boxCollider.size.x/(MaxCorner.position.x - MinCorner.position.x) * displaySize), Mathf.Max(baseScale.x, boxCollider.size.z / (MaxCorner.position.z - MinCorner.position.z) * displaySize));
+
+            // Apply the larger of the base scale or collider-based scale to ensure visibility
+            itemRectTransform.sizeDelta = new Vector2(colliderBasedScale.x, colliderBasedScale.y);
+        }
+        else
+        {
+            // Apply a default scale if no BoxCollider is found
+            itemRectTransform.sizeDelta = new Vector2(100, 100); // Default size
+        }
+
+        // Additional adjustments for appearance
+        item.GetComponent<mapInfo>().text.text = info.title;
+        item.GetComponent<Image>().sprite = info.image;
+        info.mapInstance = item;
+        item.SetActive(false);
+    }
+    public void updateMapItem(mapInfo info)
+    {
+
+    }
+    /// <summary>
+    /// Reveal and item on the 2d map.
+    /// </summary>
+    public void revealObject(mapInfo info)
+    {
+        info.mapInstance.SetActive(true);
+        Debug.Log("Discovered: " + info.name);
     }
     private void OnDestroy()
     {

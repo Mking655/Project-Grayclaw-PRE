@@ -538,7 +538,6 @@ GameObject:
   - component: {fileID: 115558417}
   - component: {fileID: 115558416}
   - component: {fileID: 115558415}
-  - component: {fileID: 115558419}
   m_Layer: 5
   m_Name: Endpoint (2)
   m_TagString: Untagged
@@ -692,20 +691,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115558413}
   m_CullTransparentMesh: 1
---- !u!114 &115558419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 115558413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d45742426b14fc438fdb45221dfaea9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  title: 
 --- !u!1 &122573115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1529,6 +1514,70 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &331057590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 331057591}
+  - component: {fileID: 331057593}
+  - component: {fileID: 331057592}
+  m_Layer: 0
+  m_Name: Room test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &331057591
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331057590}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 379763669}
+  m_RootOrder: 46
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &331057592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331057590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d45742426b14fc438fdb45221dfaea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: -123008921, guid: 10a3bdf01956ca7428248411efdfd308, type: 3}
+  title: testRoom
+  discovered: 0
+  levelmap: {fileID: 0}
+  mapInstance: {fileID: 0}
+  text: {fileID: 0}
+--- !u!65 &331057593
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331057590}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20, y: 20, z: 20}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &345216234
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1927,6 +1976,7 @@ Transform:
   - {fileID: 1480642812}
   - {fileID: 1008253939}
   - {fileID: 1743167335}
+  - {fileID: 331057591}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3122,6 +3172,7 @@ GameObject:
   - component: {fileID: 779821707}
   - component: {fileID: 779821706}
   - component: {fileID: 779821705}
+  - component: {fileID: 779821711}
   m_Layer: 0
   m_Name: Vent Endpoint (1)
   m_TagString: Untagged
@@ -3239,7 +3290,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.485373, y: 1.2019582, z: 1.2019582}
+  m_Size: {x: 1.201958, y: 1.2019582, z: 1.2019582}
   m_Center: {x: -1.2407694, y: 2.5855527e-14, z: 5.1858173e-14}
 --- !u!23 &779821709
 MeshRenderer:
@@ -3291,6 +3342,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 779821703}
   m_Mesh: {fileID: 879393299063259478, guid: c49a5bce23e66e54b901445dc04e194f, type: 3}
+--- !u!114 &779821711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779821703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d45742426b14fc438fdb45221dfaea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1208378074, guid: 10a3bdf01956ca7428248411efdfd308, type: 3}
+  title: Vent
+  discovered: 0
+  levelmap: {fileID: 0}
+  mapInstance: {fileID: 0}
+  text: {fileID: 0}
 --- !u!1 &802039026
 GameObject:
   m_ObjectHideFlags: 0
@@ -4185,7 +4254,6 @@ GameObject:
   - component: {fileID: 918651130}
   - component: {fileID: 918651129}
   - component: {fileID: 918651128}
-  - component: {fileID: 918651133}
   m_Layer: 5
   m_Name: Endpoint
   m_TagString: Untagged
@@ -4339,20 +4407,6 @@ RectTransform:
   m_AnchoredPosition: {x: 400, y: -253}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &918651133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918651127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d45742426b14fc438fdb45221dfaea9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  title: 
 --- !u!1 &975507606
 GameObject:
   m_ObjectHideFlags: 0
@@ -4501,7 +4555,6 @@ GameObject:
   - component: {fileID: 981994346}
   - component: {fileID: 981994345}
   - component: {fileID: 981994344}
-  - component: {fileID: 981994348}
   m_Layer: 5
   m_Name: Endpoint (3)
   m_TagString: Untagged
@@ -4655,20 +4708,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 981994342}
   m_CullTransparentMesh: 1
---- !u!114 &981994348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 981994342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d45742426b14fc438fdb45221dfaea9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  title: 
 --- !u!1 &982852222
 GameObject:
   m_ObjectHideFlags: 0
@@ -7072,7 +7111,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267134761}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10, y: 6.75, z: -20}
+  m_LocalPosition: {x: -13, y: 6.75, z: -22}
   m_LocalScale: {x: 1.75, y: 14, z: 1.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8774,6 +8813,7 @@ GameObject:
   - component: {fileID: 1463954434}
   - component: {fileID: 1463954433}
   - component: {fileID: 1463954432}
+  - component: {fileID: 1463954438}
   m_Layer: 0
   m_Name: Vent Endpoint (2)
   m_TagString: Untagged
@@ -8789,7 +8829,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1463954430}
   m_LocalRotation: {x: 0.4999995, y: -0.5000001, z: -0.5000004, w: 0.5000001}
-  m_LocalPosition: {x: 25.999905, y: -0.01, z: 14.999998}
+  m_LocalPosition: {x: 25.999905, y: -0.01, z: 16.999998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8891,8 +8931,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.485373, y: 1.2019582, z: 1.2019582}
-  m_Center: {x: -1.2407694, y: 2.5855527e-14, z: 5.1858173e-14}
+  m_Size: {x: 1.201958, y: 1.2019582, z: 1.2019582}
+  m_Center: {x: -0.70019525, y: 6.7480714e-15, z: 1.3932529e-14}
 --- !u!23 &1463954436
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8943,6 +8983,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1463954430}
   m_Mesh: {fileID: 879393299063259478, guid: c49a5bce23e66e54b901445dc04e194f, type: 3}
+--- !u!114 &1463954438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463954430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d45742426b14fc438fdb45221dfaea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1208378074, guid: 10a3bdf01956ca7428248411efdfd308, type: 3}
+  title: Vent
+  discovered: 0
+  levelmap: {fileID: 0}
+  mapInstance: {fileID: 0}
+  text: {fileID: 0}
 --- !u!1 &1465962183
 GameObject:
   m_ObjectHideFlags: 0
@@ -10120,7 +10178,6 @@ GameObject:
   - component: {fileID: 1741454619}
   - component: {fileID: 1741454618}
   - component: {fileID: 1741454617}
-  - component: {fileID: 1741454621}
   m_Layer: 5
   m_Name: Endpoint (1)
   m_TagString: Untagged
@@ -10274,20 +10331,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1741454615}
   m_CullTransparentMesh: 1
---- !u!114 &1741454621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741454615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d45742426b14fc438fdb45221dfaea9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  title: 
 --- !u!1 &1743167334
 GameObject:
   m_ObjectHideFlags: 0
@@ -10957,7 +11000,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1920, y: 1092}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1894816372
 MonoBehaviour:
@@ -10975,7 +11018,8 @@ MonoBehaviour:
   onCompiled: {fileID: 11400000, guid: b9bf2f850cf402d4880a5430dc1f631e, type: 2}
   MinCorner: {fileID: 1267134762}
   MaxCorner: {fileID: 1923202438}
-  displaySize: 200
+  displaySize: 1000
+  mapInfoPrefab: {fileID: 4456309133752724297, guid: e0af4b1e141dc84499469b09f6386709, type: 3}
 --- !u!114 &1894816373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10989,7 +11033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 0.41960785}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11040,7 +11084,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1923202437}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 52, y: 6.75, z: 17}
+  m_LocalPosition: {x: 32, y: 6.75, z: 22}
   m_LocalScale: {x: 1.75, y: 14, z: 1.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11160,6 +11204,7 @@ GameObject:
   - component: {fileID: 2019344675}
   - component: {fileID: 2019344674}
   - component: {fileID: 2019344673}
+  - component: {fileID: 2019344679}
   m_Layer: 0
   m_Name: Vent Endpoint (3)
   m_TagString: Untagged
@@ -11277,7 +11322,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.485373, y: 1.2019582, z: 1.2019582}
+  m_Size: {x: 1.201958, y: 1.2019582, z: 1.2019582}
   m_Center: {x: -1.2407694, y: 2.5855527e-14, z: 5.1858173e-14}
 --- !u!23 &2019344677
 MeshRenderer:
@@ -11329,6 +11374,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019344671}
   m_Mesh: {fileID: 879393299063259478, guid: c49a5bce23e66e54b901445dc04e194f, type: 3}
+--- !u!114 &2019344679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019344671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d45742426b14fc438fdb45221dfaea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1208378074, guid: 10a3bdf01956ca7428248411efdfd308, type: 3}
+  title: Vent
+  discovered: 0
+  levelmap: {fileID: 0}
+  mapInstance: {fileID: 0}
+  text: {fileID: 0}
 --- !u!1 &2019959652
 GameObject:
   m_ObjectHideFlags: 0
@@ -12123,6 +12186,7 @@ GameObject:
   - component: {fileID: 3469287838289490836}
   - component: {fileID: 3469287838289490835}
   - component: {fileID: 3469287838289490838}
+  - component: {fileID: 3469287838289490840}
   m_Layer: 0
   m_Name: Vent Endpoint
   m_TagString: Untagged
@@ -13016,7 +13080,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.485373, y: 1.2019582, z: 1.2019582}
+  m_Size: {x: 1.201958, y: 1.2019582, z: 1.2019582}
   m_Center: {x: -1.2407694, y: 2.5855527e-14, z: 5.1858173e-14}
 --- !u!114 &3469287838289490838
 MonoBehaviour:
@@ -13063,6 +13127,24 @@ MonoBehaviour:
   inRange: 0
   text: 
   visualCue: {fileID: 868499556}
+--- !u!114 &3469287838289490840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148356392589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d45742426b14fc438fdb45221dfaea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1208378074, guid: 10a3bdf01956ca7428248411efdfd308, type: 3}
+  title: Vent
+  discovered: 0
+  levelmap: {fileID: 0}
+  mapInstance: {fileID: 0}
+  text: {fileID: 0}
 --- !u!114 &4144398154460031966
 MonoBehaviour:
   m_ObjectHideFlags: 0

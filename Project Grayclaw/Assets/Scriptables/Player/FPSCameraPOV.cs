@@ -26,13 +26,16 @@ public class FPSCameraPOV : MonoBehaviour
     }
     private void OnDisable()
     {
-        mAp.gameObject.SetActive(false);
+        if(mAp != null)
+        {
+            mAp.gameObject.SetActive(false);
+        }
     }
     void Update()
     {
         MouseAiming();
         //Can toggle map from this perspective
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (mAp.gameObject.activeInHierarchy)
             {

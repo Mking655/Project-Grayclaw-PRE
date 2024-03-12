@@ -1562,7 +1562,8 @@ MonoBehaviour:
   dynamic: 0
   image: {fileID: 21300000, guid: 56378faee34800c44b734e2eccc6e087, type: 3}
   title: testRoom
-  discovered: 0
+  useCollisionDiscovery: 0
+  discovered: 1
   levelmap: {fileID: 0}
   mapInstance: {fileID: 0}
   text: {fileID: 0}
@@ -3358,6 +3359,7 @@ MonoBehaviour:
   dynamic: 0
   image: {fileID: 1208378074, guid: 10a3bdf01956ca7428248411efdfd308, type: 3}
   title: Vent
+  useCollisionDiscovery: 1
   discovered: 0
   levelmap: {fileID: 0}
   mapInstance: {fileID: 0}
@@ -9000,6 +9002,7 @@ MonoBehaviour:
   dynamic: 0
   image: {fileID: 1208378074, guid: 10a3bdf01956ca7428248411efdfd308, type: 3}
   title: Vent
+  useCollisionDiscovery: 1
   discovered: 0
   levelmap: {fileID: 0}
   mapInstance: {fileID: 0}
@@ -11392,6 +11395,7 @@ MonoBehaviour:
   dynamic: 0
   image: {fileID: 1208378074, guid: 10a3bdf01956ca7428248411efdfd308, type: 3}
   title: Vent
+  useCollisionDiscovery: 1
   discovered: 0
   levelmap: {fileID: 0}
   mapInstance: {fileID: 0}
@@ -13147,6 +13151,7 @@ MonoBehaviour:
   dynamic: 0
   image: {fileID: 1208378074, guid: 10a3bdf01956ca7428248411efdfd308, type: 3}
   title: Vent
+  useCollisionDiscovery: 1
   discovered: 0
   levelmap: {fileID: 0}
   mapInstance: {fileID: 0}
@@ -13518,7 +13523,8 @@ MonoBehaviour:
   dynamic: 1
   image: {fileID: 21300000, guid: 9aebd705574f9e642aef1e5f59b3e4d8, type: 3}
   title: You
-  discovered: 0
+  useCollisionDiscovery: 0
+  discovered: 1
   levelmap: {fileID: 0}
   mapInstance: {fileID: 0}
   text: {fileID: 0}

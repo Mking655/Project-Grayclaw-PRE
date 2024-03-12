@@ -13,6 +13,8 @@ public class mapInfo : MonoBehaviour
     public bool dynamic;
     public Sprite image;
     public string title;
+    [Tooltip("Have the map info automatically be discovered if player enters colider")]
+    public bool useCollisionDiscovery = false;
     public bool discovered = false;
     [HideInInspector]
     public map levelmap; //injected on compilation
@@ -22,6 +24,22 @@ public class mapInfo : MonoBehaviour
     [Header("Prefab Varibles")]
     public TMP_Text text;
 
+    private void Start()
+    {
+        //If dicovered flag checked, discover object
+        if (discovered && mapInstance != null)
+        {
+            discover();
+        }
+    }
+    //If using colision discovery, discover object once player enters collider
+    private void OnTriggerEnter(Collider other)
+    {
+        if (useCollisionDiscovery && other.gameObject.tag == "Player" && discovered == false)
+        {
+            discover();
+        }
+    }
     public void discover()
     {
         discovered = true;

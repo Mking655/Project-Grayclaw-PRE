@@ -99,9 +99,6 @@ public class map : Singleton<map>
             {
                 dynamicItems.Add(Obj);
             }
-
-            //For now, reavel all items
-            revealObject(Obj);
         }
 
         //--Trigger compilation event

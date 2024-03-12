@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 8131089585406121413}
   - component: {fileID: 760381583298139631}
   - component: {fileID: 4456309133752724297}
+  - component: {fileID: 954214631308640811}
   m_Layer: 5
   m_Name: mapItem
   m_TagString: Untagged
@@ -225,9 +226,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d45742426b14fc438fdb45221dfaea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dynamic: 0
   image: {fileID: 0}
   title: 
   discovered: 0
   levelmap: {fileID: 0}
   mapInstance: {fileID: 0}
   text: {fileID: 1194230996002683497}
+--- !u!95 &954214631308640811
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436143340265140029}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 545c7a554ceff18418e8b7b7c09685e5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

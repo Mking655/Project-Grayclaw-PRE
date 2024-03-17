@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/C1 Compliant Greetings/Compliant Greetings.unity
+    guid: 2c7f2ab7af4237a4c9a767712a5421df
   m_configObjects: {}

@@ -40,11 +40,6 @@ public class ComputerPOV : MonoBehaviour
         {
             MouseAiming();
         }
-        //Go back
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            POVManager.Instance.changePOV(POVManager.Instance.previousActivePOV);
-        }
     }
     void MouseAiming()
     {

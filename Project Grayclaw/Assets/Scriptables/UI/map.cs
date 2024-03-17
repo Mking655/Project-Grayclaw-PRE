@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
-using System.Net;
-using static UnityEditor.Progress;
 
 [RequireComponent(typeof(RectTransform))]
 /// <summary>

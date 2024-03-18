@@ -15,7 +15,9 @@ public class physicalEndpoint : MonoBehaviour
     public Endpoint endpoint;
     [HideInInspector]
     public Animator animator;//Have physical representation change according to state
-    //TODO: possible room detection and automatic assignment into room? What would a "room" script be?
+    //Injected by corresponding room
+    [HideInInspector]
+    public Room room;
     public UnityEvent onBreak;
     bool isBroken = false;
     private void Awake()
@@ -24,6 +26,13 @@ public class physicalEndpoint : MonoBehaviour
         if (endpoint == null)
         {
             Debug.Log(gameObject.name + " has not been linked to an endpoitn on the core computer canvas");
+        }
+    }
+    private void Start()
+    {
+        if(room == null)
+        {
+            Debug.LogError("Physical endpoint without a corresponding room");
         }
     }
     //with this system, the only way the endpoint can be broken is through the physical endpoint.

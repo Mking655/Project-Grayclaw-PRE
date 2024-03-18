@@ -1,0 +1,43 @@
+LEVEL DESIGN GUIDE
+
+Step 1: Importing Assets
+- Navigate to Assets > Import New Asset in Unity and select your 3D models.
+- Attach the master texture to your imported models in the Inspector window.
+- Ensure "Generate Lightmap UVs" is checked under the model's Import Settings.
+- Drag each model from the Project window into the Scene, add components (Colliders, AudioSource), set properties (static or dynamic), and convert to prefab by dragging it back into a Prefabs folder. Assign relevant tags (e.g., "Floor", "Ladder").
+
+Step 2: Scene Setup
+- Add a Canvas to your scene via GameObject > UI > Canvas for UI elements.
+- Create an empty GameObject and add a Post-Processing Volume component for global visual effects. Set up volume profiles as needed.
+- Ensure your scene has a Main Camera set for your desired player view. Add a "Player Camera" component to the main camera.
+- Create a GameObject named "POV Manager" and attach a component that manages player POVs.
+- Add a UI element for the map and attach a "Map" component/script for in-game mapping.
+- Place "INFO_MINBOUND" and "INFO_MAXBOUND" objects to define the map size. Assign these to the Map component.
+- Create a Map Info ScriptableObject and drag this into the Map component's field.
+
+Step 3: Defining Rooms
+- For each room, create an empty GameObject and add a "Room" script for room-specific settings.
+- Add components like a Reverb Zone, a Box Collider, and a Volume component to the room GameObject.
+
+Step 4: Create Structural Elements
+- Drag and drop your prefab objects into the scene to construct the layout and structure of the room.
+
+Step 5: Setup Systems
+- Within the POV Manager's canvas, create objects representing system cores. Add a "System Core" component to each.
+- Add objects serving as endpoints for each system. Assign a "Physical Endpoint" component and link them to their logical counterparts.
+- Once you have placed you endpoints, assign them to the corresponding room component of the room your physical endpoint is placed in.
+- In the System Core component, define possible vulnerabilities and associate them with fixing minigames.
+
+Step 6: Lighting
+- Place and configure lights throughout your scene. Choose between realtime, baked, or mixed lighting modes.
+- Once all lights are placed and configured, bake your scene's lightmaps through Unity's Lighting window.
+
+Step 7: AI Characters
+- (To be defined later)
+
+Comments and Additional Tips:
+- Keep your project organized and efficient by using folders to categorize assets, prefabs, and scripts.
+- Properly tagging your game objects simplifies scripting and interaction logic.
+- Regularly test your level as you build it for issues and improvement areas.
+- Maintain documentation outlining the purpose and functionality of each script and prefab.
+

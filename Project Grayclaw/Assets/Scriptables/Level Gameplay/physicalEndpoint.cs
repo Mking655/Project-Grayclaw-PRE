@@ -19,7 +19,7 @@ public class physicalEndpoint : MonoBehaviour
     [HideInInspector]
     public Room room;
     public UnityEvent onBreak;
-    bool isBroken = false;
+    //bool isBroken = false;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -49,7 +49,7 @@ public class physicalEndpoint : MonoBehaviour
         animator.SetBool("isBroken", true);
         endpoint.ChangeState(EndpointState.Broken);
         onBreak.Invoke();
-        isBroken = true;
+        //isBroken = true;
     }
     public void fixEndpoint()
     {
@@ -57,7 +57,7 @@ public class physicalEndpoint : MonoBehaviour
         {
             animator.SetBool("isBroken", false);
             endpoint.ChangeState(EndpointState.Vulnerable);
-            isBroken = false;
+            //isBroken = false;
         }
         else
         {

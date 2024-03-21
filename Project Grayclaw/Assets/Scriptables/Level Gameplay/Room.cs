@@ -5,30 +5,23 @@ using UnityEngine.Rendering;
 /// <summary>
 /// Script that sets up all the nececary gaemplay data for a individual room. 
 /// </summary>
-[RequireComponent(typeof(Volume), typeof(AudioReverbZone), typeof(mapInfo))]
+[RequireComponent(typeof(AudioReverbZone), typeof(mapInfo))]
 public class Room : MonoBehaviour
 {
-    [Tooltip("All physical endpoints in the area of the room. Each row corresponds to the system of the endpoints belong to.")]
-    public List<List<physicalEndpoint>> Endpoints = new List<List<physicalEndpoint>>();
-    public Volume volume;
+    [Tooltip("All physical endpoints in the area of the room.")]
+    public List<physicalEndpoint> Endpoints = new List<physicalEndpoint>();
+    [HideInInspector]
     public AudioReverbZone reverbZone;
+    [HideInInspector]
     public mapInfo info;
     void Awake()
     {
         //inject room refrence into endpoints
-        foreach(List<physicalEndpoint> system in Endpoints)
+        foreach(physicalEndpoint endpoint in Endpoints) 
         {
-            foreach(physicalEndpoint endpoint in system) 
-            {
-                endpoint.room = this;
-            }
-        }   
-        //Check for components
-        volume = GetComponent<Volume>();
-        if(volume == null ) 
-        {
-            Debug.LogError(gameObject.name + " missing component: Volume");
+            endpoint.room = this;
         }
+        //Check for components
         reverbZone = GetComponent<AudioReverbZone>();
         if(reverbZone == null)
         {

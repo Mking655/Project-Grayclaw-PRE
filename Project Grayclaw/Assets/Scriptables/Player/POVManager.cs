@@ -23,6 +23,10 @@ public class POVManager : Singleton<POVManager>
             activePOV = null;
             return;
         }
+        foreach (POV p in POVs)
+        {
+            p.deactivate();
+        }
         changePOV(startingPOV);
     }
     public POV getActivePOV()
@@ -65,6 +69,7 @@ public class POVManager : Singleton<POVManager>
 
         cam.followPoint = newPOV.transform;
         activePOV.activate();
+        Debug.Log(activePOV.name + " changed to.");
     }
 
 }

@@ -23,6 +23,7 @@ public class FPSCameraPOV : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         mainCam.fieldOfView = PlayerSettings.FOV;
+        Debug.Log("Updated Camera settings");
     }
     private void OnDisable()
     {

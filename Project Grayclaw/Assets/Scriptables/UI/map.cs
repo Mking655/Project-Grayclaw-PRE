@@ -63,7 +63,6 @@ public class map : Singleton<map>
             normalizedXSize = baseXSize / baseZSize;
         }
         gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(normalizedXSize * displaySize, normalizedZSize * displaySize);
-        Debug.Log(new Vector2(normalizedXSize * displaySize, normalizedZSize * displaySize));
 
         //--Endpoint population
 

@@ -74,14 +74,6 @@ public class FPSMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         Vector3 move = transform.right * x + transform.forward * z;
-        if (!isGrounded)
-        {
-            Debug.Log("in air");
-        }
-        else
-        {
-            Debug.Log("grounded");
-        }
         // Climbing
         if (isClimbing)
         {

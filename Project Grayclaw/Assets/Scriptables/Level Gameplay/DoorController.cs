@@ -1,11 +1,14 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider), typeof(AudioSource))]
 public class DoorController : MonoBehaviour
 {
-    [SerializeField] private Transform doorTransform; // The actual door object to rotate
+    [SerializeField] private Transform doorTransform; // The actual door object to rotate or move
+    public bool vertical = false;
     public float rotateAmount = 90;
+    public float lip = 0;
     public float speed = 2f;
     public AudioClip openSound;
     public AudioClip closeSound;
@@ -13,64 +16,116 @@ public class DoorController : MonoBehaviour
     private AudioSource audioSource;
     private Quaternion closedRotation;
     private Quaternion openRotation;
-    private bool isOpening = false;
+    private Vector3 closedPosition;
+    private Vector3 openPosition;
+
+    [SerializeField]
+    bool open = false;
+    [SerializeField]
+    private bool isReady = true;
 
     private void Start()
     {
-        // Ensure there's a doorTransform assigned
+        audioSource = GetComponent<AudioSource>();
         if (doorTransform == null)
         {
             Debug.LogError("Door transform not assigned.", this);
             return;
         }
 
-        audioSource = GetComponent<AudioSource>();
-        closedRotation = doorTransform.rotation; // Store the initial rotation of the doorTransform as the closed state
-        openRotation = closedRotation * Quaternion.Euler(0, rotateAmount, 0); // Calculate the open rotation
+        if (!vertical)
+        {
+            closedRotation = doorTransform.rotation;
+            openRotation = closedRotation * Quaternion.Euler(0, rotateAmount, 0);
+        }
+        else
+        {
+            closedPosition = doorTransform.position;
+            openPosition = closedPosition + new Vector3(0, doorTransform.GetComponent<BoxCollider>().size.y - lip, 0);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !open && isReady)
         {
-            Vector3 doorToPlayer = other.transform.position - doorTransform.position;
-            float angle = Vector3.SignedAngle(doorTransform.forward, doorToPlayer, Vector3.up);
-            Debug.Log(angle);
-            if (angle < 90)
+            if (!vertical)
             {
-                openRotation = closedRotation * Quaternion.Euler(0, rotateAmount, 0);
+                // Determine door opening direction based on player position
+                DetermineOpeningDirection(other.transform.position);
+                StopAllCoroutines();
+                StartCoroutine(RotateDoor(openRotation, openSound));
             }
             else
             {
-                openRotation = closedRotation * Quaternion.Euler(0, -rotateAmount, 0);
-                
+                StopAllCoroutines();
+                StartCoroutine(OpenDoor(openPosition, openSound));
             }
-
-            StopAllCoroutines(); // Stop any existing rotation coroutines
-            StartCoroutine(RotateDoor(openRotation, openSound));
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && isOpening)
+        if (other.gameObject.CompareTag("Player") && open && isReady)
         {
-            StopAllCoroutines();
-            StartCoroutine(RotateDoor(closedRotation, closeSound));
+            //StopAllCoroutines(); // Ensure any ongoing movement completes before closing
+            if (!vertical)
+            {
+                StartCoroutine(RotateDoor(closedRotation, closeSound));
+            }
+            else
+            {
+                StartCoroutine(OpenDoor(closedPosition, closeSound));
+            }
         }
     }
 
     private IEnumerator RotateDoor(Quaternion targetRotation, AudioClip sound)
     {
-        isOpening = targetRotation == openRotation;
+        isReady = false;
         audioSource.PlayOneShot(sound);
+
+        float startTime = Time.time;
+        Quaternion startRotation = doorTransform.rotation;
 
         while (Quaternion.Angle(doorTransform.rotation, targetRotation) > 0.01f)
         {
-            doorTransform.rotation = Quaternion.Lerp(doorTransform.rotation, targetRotation, speed * Time.deltaTime);
+            float distCovered = (Time.time - startTime) * speed;
+            float fractionOfJourney = distCovered / Quaternion.Angle(startRotation, targetRotation);
+            doorTransform.rotation = Quaternion.Lerp(startRotation, targetRotation, fractionOfJourney);
             yield return null;
         }
 
-        doorTransform.rotation = targetRotation; // Ensure the rotation is exactly the target in the end
+        doorTransform.rotation = targetRotation;
+        isReady = true;
+        open = doorTransform.rotation == openRotation;
+    }
+
+    private IEnumerator OpenDoor(Vector3 targetPosition, AudioClip sound)
+    {
+        isReady = false;
+        audioSource.PlayOneShot(sound);
+
+        float startTime = Time.time;
+        Vector3 startPosition = doorTransform.position;
+
+        while (Vector3.Distance(doorTransform.position, targetPosition) > 0.1f)
+        {
+            float distCovered = (Time.time - startTime) * speed;
+            float fractionOfJourney = distCovered / Vector3.Distance(startPosition, targetPosition);
+            doorTransform.position = Vector3.Lerp(startPosition, targetPosition, fractionOfJourney);
+            yield return null;
+        }
+
+        doorTransform.position = targetPosition;
+        isReady = true;
+        open = Mathf.Abs(doorTransform.position.y - openPosition.y) < 0.01f;
+    }
+
+    private void DetermineOpeningDirection(Vector3 playerPosition)
+    {
+        Vector3 doorToPlayer = playerPosition - doorTransform.position;
+        float angle = Vector3.SignedAngle(doorTransform.forward, doorToPlayer, Vector3.up);
+        openRotation = angle < 90 ? closedRotation * Quaternion.Euler(0, rotateAmount, 0) : closedRotation * Quaternion.Euler(0, -rotateAmount, 0);
     }
 }

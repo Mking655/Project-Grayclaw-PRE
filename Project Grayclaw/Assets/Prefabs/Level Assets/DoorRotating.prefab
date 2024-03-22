@@ -48,8 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorTransform: {fileID: 5190681714791518215}
+  vertical: 0
   rotateAmount: 90
-  speed: 5
+  speed: 400
   openSound: {fileID: 8300000, guid: 606c20bccc652aa4b92bb54d33978b02, type: 3}
   closeSound: {fileID: 8300000, guid: 10f83cc217472b24e94e529cf964473f, type: 3}
 --- !u!65 &5729626534056799064

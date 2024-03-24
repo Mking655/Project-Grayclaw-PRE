@@ -25,7 +25,7 @@ public class physicalEndpoint : MonoBehaviour
         animator = GetComponent<Animator>();
         if (endpoint == null)
         {
-            Debug.Log(gameObject.name + " has not been linked to an endpoitn on the core computer canvas");
+            Debug.Log(gameObject.name + " has not been linked to an endpoint on the core computer canvas");
         }
     }
     private void Start()

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,10 +9,11 @@ using UnityEngine;
 public class MapData : ScriptableObject
 {
     // Dictionary to hold lists of endpoints, keyed by tags
-    public Dictionary<string, List<Endpoint>> endpoints = new Dictionary<string, List<Endpoint>>();
-    //TODO: need list of rooms
+    public Dictionary<string, List<physicalEndpoint>> endpoints = new Dictionary<string, List<physicalEndpoint>>();
+    public List<Room> rooms = new List<Room>();
     public void Reset()
     {
         endpoints.Clear();
+        rooms = new List<Room>();
     }
 }

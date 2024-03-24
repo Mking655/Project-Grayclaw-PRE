@@ -64,13 +64,13 @@ public class map : Singleton<map>
         }
         gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(normalizedXSize * displaySize, normalizedZSize * displaySize);
 
-        //--Endpoint population
+        //--Data population
 
-        // Find all endpoints in the scene
-        Endpoint[] allEndpoints = FindObjectsOfType<Endpoint>();
+        // Find all physical endpoints in the scene
+        physicalEndpoint[] allEndpoints = FindObjectsOfType<physicalEndpoint>();
 
         // Iterate over each endpoint, adding it to map data and sorting by key
-        foreach (Endpoint endpoint in allEndpoints)
+        foreach (physicalEndpoint endpoint in allEndpoints)
         {
             // Get the tag of the GameObject to which the endpoint is attached
             string tag = endpoint.gameObject.tag;
@@ -78,11 +78,17 @@ public class map : Singleton<map>
             // If the dictionary doesn't contain the tag key, add it
             if (!data.endpoints.ContainsKey(tag))
             {
-                data.endpoints[tag] = new List<Endpoint>();
+                data.endpoints[tag] = new List<physicalEndpoint>();
             }
 
             // Add the endpoint to the correct list based on its tag
             data.endpoints[tag].Add(endpoint);
+        }
+        // Find all rooms in the scene
+        Room[] allRooms = FindObjectsOfType<Room>();
+        foreach (Room room in allRooms)
+        {
+            data.rooms.Add(room);
         }
 
         //--Map population (reveals all by default)

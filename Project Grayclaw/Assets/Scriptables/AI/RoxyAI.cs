@@ -1,205 +1,243 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Collider))]
+/// <summary>
+/// Controls Roxanne Wolf's behavior in the scene
+/// </summary>
 [RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(AudioSource))]
 public class RoxyAI : MonoBehaviour
 {
+    //scriptable object that contains all the information about a lavel
+    private MapData levelData;
+    public State currentState;
+    [SerializeField]
+    //Has one value, "Velocity" that corresponds to a blend tree. At Velocity = 0 is a full stand still animation. At Velocity = 1 is a full walk animation.
+    private Animator animator;
+    [SerializeField]
+    private NavMeshAgent navMeshAgent;
+    // Assuming the following additional states are defined:
     public enum State
     {
         idling,
-        pinging,
-        attacking
-    }
-    private State currentState;
-    public State getCurrentState()
-    {
-        return currentState;
-    }
-    [SerializeField]
-    private NavMeshAgent navMeshAgent;
-    [SerializeField]
-    private List<Vent> vents;
-    [SerializeField]
-    private Transform origin;
-    [SerializeField]
-    private float speed = 9;
-    [SerializeField]
-    private float minWaitTime, maxWaitTime;
-    [SerializeField]
-    private float pingTime;
-    [SerializeField]
-    private float ventCheckTime;
-    [SerializeField]
-    private GameObject pingCountdownUI;
-    [SerializeField]
-    private AudioClip foundYouSound;
-    //for readability
-    private void setState(RoxyAI.State state)
-    {
-        currentState = state;
-    }
-    public float getPingTime()
-    {
-        return pingTime;
-    }
-    private float idleTime;
-    private bool hasStartedPing;
-    private bool hasStartedAttacking;
-    void Stop()
-    {
-        navMeshAgent.isStopped = true;
-        navMeshAgent.speed = 0;
-        gameObject.GetComponent<AudioSource>().Stop();
+        chasing,
+        disrupting
     }
 
-    void Move()
+    [SerializeField]
+    private float roamDelay = 5f; // Time Roxy spends in a location before moving again
+    [SerializeField]
+    private float disruptDelay = 5f; // Time Roxy spends at an endpoint before breaking it
+    [Tooltip("Value between 0 and 1 signifying likleyness to break an endpoint.")]
+    [SerializeField]
+    [Range(0f, 1f)]
+    private float destructiveness = 0.1f;
+    private float nextActionTime = 0f;
+    private Vector3 lastKnownPlayerPosition;
+    private physicalEndpoint targetedEndpoint;
+    [SerializeField]
+    private LayerMask playerLayer;
+    [SerializeField]
+    private LayerMask obstacleLayer;
+    [SerializeField]
+    private float chaseDistance = 20f; // Distance from which Roxy starts chasing the player
+    [SerializeField]
+    private float viewAngle;
+    [SerializeField]
+    private string systemToTarget = "Untagged"; // Tag of the system endpoints to disrupt
+    private void Awake()
     {
-        navMeshAgent.isStopped = false;
-        navMeshAgent.speed = speed;
-        gameObject.GetComponent<AudioSource>().Play();
-    }
-
-    private void Start()
-    {
-        //Navigation Setup
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        navMeshAgent.SetDestination(origin.transform.position);
-        navMeshAgent.stoppingDistance = 0;
-
-        // Initialize variables
-        idleTime = Random.Range(minWaitTime, maxWaitTime);
-        Move();
-        setState(RoxyAI.State.idling);
+        levelData = FindAnyObjectByType<map>().data;
+        if (levelData == null)
+        {
+            Debug.LogError("No map singleton in level.");
+        }
+        currentState = RoxyAI.State.idling;
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+            if (animator == null)
+            {
+                Debug.LogError("No defined animator for Roxanne Wolf");
+            }
+        }
+        if (navMeshAgent == null)
+        {
+            navMeshAgent = GetComponent<NavMeshAgent>();
+            if (navMeshAgent == null)
+            {
+                Debug.LogError("No defined NavMeshAgent for Roxanne Wolf");
+            }
+        }
+        //Here so idling script will initially work
+        navMeshAgent.destination = transform.position;
     }
 
     private void Update()
     {
         switch (currentState)
         {
-            case RoxyAI.State.idling:
-                idle();
+            case State.idling:
+                Idle();
                 break;
-            case RoxyAI.State.pinging:
-                ping();
+            case State.chasing:
+                Chase();
                 break;
-            case RoxyAI.State.attacking:
-                attack();
+            case State.disrupting:
+                Disrupt();
                 break;
-        }
-    }
-    //must be acomanied by "Move()" before call
-    private void idle()
-    {
-        navMeshAgent.SetDestination(origin.transform.position);
-        Debug.Log(navMeshAgent.remainingDistance);
-        if(navMeshAgent.pathPending == false && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
-        {
-            Stop();
-        }
-
-        idleTime -= Time.deltaTime;
-        if (idleTime <= 0)
-        {
-            Stop();
-            setState(RoxyAI.State.pinging);
-            idleTime = Random.Range(minWaitTime, maxWaitTime);
         }
     }
 
-    private void ping()
+    private void Idle()
     {
-        Stop();
-        //Start state
-        if (!hasStartedPing)
+        // Check if Roxy has reached her destination or if it's time to choose a new destination
+        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending && nextActionTime == -1)
         {
-            hasStartedPing = true;
-            Debug.Log("Starting Ping");
-            StartCoroutine(PingCooldown());
+            nextActionTime = Time.time + roamDelay + Random.Range(-2f, 2f);
+        }
+        if(nextActionTime != -1 && Time.time >= nextActionTime)
+        {
+            // Pick a random room and set the destination OR decide to break an endpoint
+            float random = Random.Range(0f,1f);
+            if(random <= destructiveness)
+            {
+                currentState = State.disrupting;
+            }
+            else
+            {
+                if (levelData.rooms.Count > 0)
+                {
+                    Room targetRoom = levelData.rooms[Random.Range(0, levelData.rooms.Count)];
+                    navMeshAgent.SetDestination(targetRoom.transform.position);
+                }
+                nextActionTime = -1;
+            }
+        }
+        // Update the animator based on the NavMeshAgent's velocity
+        animator.SetFloat("Velocity", navMeshAgent.velocity.magnitude);
+
+        // Check for player visibility to potentially switch to chasing
+        if (CheckForPlayer() != null)
+        {
+            currentState = State.chasing;
         }
     }
-    //walking state player must always be named "--Walking Player"
-    private IEnumerator PingCooldown()
+
+    private void Chase()
     {
-        pingCountdownUI.SetActive(true);
-        yield return new WaitForSeconds(pingTime);
-        //if player is moving and is in FPS mode
-        //TODO: Depending on the POV, this may not apply
-        if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
+        Collider playerCollider = CheckForPlayer();
+        animator.SetFloat("Velocity", 1); // Assume max velocity for chasing
+        //If player detected
+        if (playerCollider != null)
         {
-            Debug.Log("Ping detected movement");
-            setState(RoxyAI.State.attacking);
+            lastKnownPlayerPosition = playerCollider.transform.position; //update player position
+            navMeshAgent.SetDestination(lastKnownPlayerPosition);
         }
-        else
+        //if has arrived at last know location, but isn't there
+        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {
-            Debug.Log("No movement detected");
-            Move();
-            setState(RoxyAI.State.idling);
+            // Recheck for player visibility here could potentially be optimized away or integrated differently.
+            Debug.Log(playerCollider != null ? "found you" : "I'll find you eventually");
+            if (playerCollider == null)
+            {
+                currentState = State.idling;
+                animator.SetFloat("Velocity", 0);
+            }
         }
-        hasStartedPing = false;
     }
-    private Vent findClosestVent()
+
+    private Collider CheckForPlayer()
     {
-        foreach(Vent vent in vents)
+        // Check if player in range
+        Collider[] playersInRange = Physics.OverlapSphere(transform.position, chaseDistance, playerLayer);
+        Collider player = null;
+        foreach (var playerCollider in playersInRange)
         {
-            if(vent.playerInRoom) 
-            { 
-                return vent;
+            // Find the exact player controller object in the player layer
+            if (playerCollider.GetComponent<CharacterController>() != null)
+            {
+                player = playerCollider;
+            }
+        }
+
+        if (player != null)
+        {
+            // Check line of sight
+            RaycastHit hit;
+            // So ray hits center of collider
+            //Vector3 playerHeightOffset = new Vector3(0, player.GetComponent<CharacterController>().height / 2, 0);
+            Vector3 playerCenter = player.GetComponent<CharacterController>().center + player.transform.position;
+            Vector3 directionToPlayer = (playerCenter - transform.position).normalized;
+            Debug.DrawLine(transform.position, transform.position + directionToPlayer * chaseDistance, Color.red);
+
+            // Use LayerMask to combine player and obstacle layers
+            int combinedLayers = playerLayer.value | obstacleLayer.value;
+
+            // Cast ray to check for line of sight considering both player and obstacles
+            if (Physics.Raycast(transform.position, directionToPlayer, out hit, chaseDistance, combinedLayers))
+            {
+                // Check if the hit object is actually the player
+                if (hit.collider.gameObject.CompareTag("Player"))
+                {
+                    return player;
+                }
             }
         }
         return null;
     }
-    IEnumerator startAttack()
+    private void Disrupt()
     {
-        Move();
-        navMeshAgent.SetDestination(findClosestVent().transform.position);
-        Vent closestVent = findClosestVent();
-        Debug.Log("Starting Attack on " + closestVent.roomName);
-        while (navMeshAgent.pathPending || navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance)
+        if(targetedEndpoint == null)
         {
-            Debug.Log(navMeshAgent.remainingDistance + " meters until she reaches you");
-            yield return null;
-        }
-        Stop();
-        //Will keep checking on update call until end of time limit
-        float remainingTime = ventCheckTime;
-        while(remainingTime > 0) 
-        {
-            bool caught = closestVent.check();
-            if (caught)
+            // Pick a random vulnerable system endpoint and move to disrupt
+            if (levelData.endpoints.ContainsKey(systemToTarget) && levelData.endpoints[systemToTarget].Count > 0)
             {
-                Debug.Log("You have been caught");
-            }
-            remainingTime -= Time.deltaTime;
-            yield return null;
-        }
-        Move();
-        setState(RoxyAI.State.idling);
-        hasStartedAttacking = false;
-        closestVent.leave();
-    }
-    private void attack()
-    {
-        //Start state
-        if (!hasStartedAttacking)
-        {
-            hasStartedAttacking = true;
-            if (findClosestVent() != null)
-            {
-                StartCoroutine(startAttack());
+                int index = Random.Range(0, levelData.endpoints[systemToTarget].Count);
+                physicalEndpoint targetEndpoint = levelData.endpoints[systemToTarget][index];
+                // Additional check: Verify the endpoint's current state is indeed vulnerable
+                if (targetEndpoint.endpoint.state == EndpointState.Vulnerable)
+                {
+                    targetedEndpoint = targetEndpoint;
+                    Debug.Log("I'm going to destroy: " + targetedEndpoint.gameObject.name);
+                    nextActionTime = -1; // en route
+                    navMeshAgent.SetDestination(targetEndpoint.transform.position);
+                }
+                else
+                {
+                    // No vulnerable targets found, reset targetedEndpoint and return to idling
+                    targetedEndpoint = null;
+                    currentState = State.idling;
+                    return;
+                }
             }
             else
             {
-                Debug.Log("You are hiding");
-                //exit this state
-                Move();
-                setState(RoxyAI.State.idling);
-                hasStartedAttacking = false;
+                // No vulnerable targets found, reset targetedEndpoint and return to idling
+                targetedEndpoint = null;
+                currentState = State.idling;
+                return;
             }
+        }
+        // Check if Roxy has reached her destination
+        if (targetedEndpoint != null && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending && nextActionTime == -1)
+        {
+            //Start timer
+            Debug.Log("You better stop me.");
+            nextActionTime = Time.time + disruptDelay + Random.Range(-2f, 2f);
+        }
+        //wait until ready to break, then go back to idling
+        if (nextActionTime != -1 && Time.time >= nextActionTime)
+        {
+            targetedEndpoint.breakEndpoint();
+            targetedEndpoint = null;
+            currentState = State.idling;
+        }
+        animator.SetFloat("Velocity", navMeshAgent.velocity.magnitude);
+        // Check for player visibility to potentially switch to chasing
+        if (CheckForPlayer() != null)
+        {
+            currentState = State.chasing;
         }
     }
 }

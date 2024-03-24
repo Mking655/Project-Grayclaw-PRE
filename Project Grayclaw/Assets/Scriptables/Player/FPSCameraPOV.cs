@@ -17,13 +17,11 @@ public class FPSCameraPOV : MonoBehaviour
     private void Awake()
     {
         mainCam = gameObject.GetComponent<POV>().manager.cam.gameObject.GetComponent<Camera>();
-        Debug.Log(mainCam.name);
     }
     private void OnEnable()
     {
         Cursor.lockState = CursorLockMode.Locked;
         mainCam.fieldOfView = PlayerSettings.FOV;
-        Debug.Log("Updated Camera settings");
     }
     private void OnDisable()
     {

@@ -38,7 +38,7 @@ public class Endpoint : MonoBehaviour
     {
         if(visualIndicator == null)
         {
-            Debug.Log("endpoint representation doesnt have a visual indicator");
+            Debug.LogError("endpoint representation does not have a visual indicator");
             return;
         }
         // Update visualIndicator based on the current state

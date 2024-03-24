@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5729626534056798887}
   - component: {fileID: 5729626534056799064}
   - component: {fileID: 5729626534056798886}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DoorRotating
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,9 +50,12 @@ MonoBehaviour:
   doorTransform: {fileID: 5190681714791518215}
   vertical: 0
   rotateAmount: 90
+  lip: 0
   speed: 400
   openSound: {fileID: 8300000, guid: 606c20bccc652aa4b92bb54d33978b02, type: 3}
   closeSound: {fileID: 8300000, guid: 10f83cc217472b24e94e529cf964473f, type: 3}
+  open: 0
+  isReady: 1
 --- !u!65 &5729626534056799064
 BoxCollider:
   m_ObjectHideFlags: 0

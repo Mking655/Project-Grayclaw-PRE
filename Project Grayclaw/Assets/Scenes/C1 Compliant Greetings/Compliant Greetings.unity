@@ -1016,7 +1016,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87075617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000000042491592, y: 2.0000265, z: 0.00000045727938}
+  m_LocalPosition: {x: 0.0000000045256456, y: 2.0000265, z: 0.00000049732625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1210,7 +1210,7 @@ MonoBehaviour:
     camera:
       camera: 0
   m_ProxyVolume: {fileID: 0}
-  m_BakedTexture: {fileID: 8900000, guid: 8768f69c62376bc4a922c7b694c3d6c4, type: 3}
+  m_BakedTexture: {fileID: 8900000, guid: 24f621013ca4d254ab650eed624ff1e3, type: 3}
   m_CustomTexture: {fileID: 0}
   m_BakedRenderData:
     m_WorldToCameraRHS:
@@ -4559,8 +4559,8 @@ Transform:
   m_Children:
   - {fileID: 543450652359851063}
   - {fileID: 779821704}
-  - {fileID: 1463954431}
   - {fileID: 2019344672}
+  - {fileID: 1463954431}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -0.294, y: -0.085, z: 0.005}
@@ -5554,7 +5554,7 @@ MonoBehaviour:
     camera:
       camera: 0
   m_ProxyVolume: {fileID: 0}
-  m_BakedTexture: {fileID: 8900000, guid: 491723b2563326340a3ce98a31c3201c, type: 3}
+  m_BakedTexture: {fileID: 8900000, guid: 8349119c7e788b84eb950cf72eb34829, type: 3}
   m_CustomTexture: {fileID: 0}
   m_BakedRenderData:
     m_WorldToCameraRHS:
@@ -5808,7 +5808,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363597752}
   m_LocalRotation: {x: 1.18491866e-11, y: 1, z: -0.0000000814604, w: 0.00014530121}
-  m_LocalPosition: {x: 0.11130723, y: 2.0000522, z: 21.391338}
+  m_LocalPosition: {x: 0.11130726, y: 2.0000594, z: 21.391256}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11440,7 +11440,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827611956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.000029, z: 0.0005092621}
+  m_LocalPosition: {x: 0, y: 2.0000339, z: 0.0005912781}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11634,7 +11634,7 @@ MonoBehaviour:
     camera:
       camera: 0
   m_ProxyVolume: {fileID: 0}
-  m_BakedTexture: {fileID: 8900000, guid: fad56656a15f95c4fa023fc85d4149aa, type: 3}
+  m_BakedTexture: {fileID: 8900000, guid: eb7e6b0a262f98c4493faa1ef6f1011a, type: 3}
   m_CustomTexture: {fileID: 0}
   m_BakedRenderData:
     m_WorldToCameraRHS:
@@ -13783,7 +13783,7 @@ MonoBehaviour:
     camera:
       camera: 0
   m_ProxyVolume: {fileID: 0}
-  m_BakedTexture: {fileID: 8900000, guid: fa51dd8e656fe3b4195d8bebd804c8d1, type: 3}
+  m_BakedTexture: {fileID: 8900000, guid: 1871dbc8c9ea52e47835c8d998807a1d, type: 3}
   m_CustomTexture: {fileID: 0}
   m_BakedRenderData:
     m_WorldToCameraRHS:
@@ -14037,7 +14037,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 924876297}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0.0005092621}
+  m_LocalPosition: {x: 0, y: 2, z: 0.0005912781}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15438,7 +15438,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 9f056bd96f0b12c4ba92de462ad477d2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -15483,11 +15483,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.25
-  m_Speed: 3.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0.1
+  m_AngularSpeed: 360
+  m_StoppingDistance: 0.15
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -16655,7 +16655,7 @@ MonoBehaviour:
     camera:
       camera: 0
   m_ProxyVolume: {fileID: 0}
-  m_BakedTexture: {fileID: 8900000, guid: 7bd1960b51024c942859bb3a182bae44, type: 3}
+  m_BakedTexture: {fileID: 8900000, guid: 749eb9483d7fead4c862691bbe2d05ab, type: 3}
   m_CustomTexture: {fileID: 0}
   m_BakedRenderData:
     m_WorldToCameraRHS:
@@ -17691,7 +17691,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1120670421}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0004043579, y: 2.0000186, z: 0.0001296997}
+  m_LocalPosition: {x: -0.0004043579, y: 2.0000265, z: 0.0002117157}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17885,7 +17885,7 @@ MonoBehaviour:
     camera:
       camera: 0
   m_ProxyVolume: {fileID: 0}
-  m_BakedTexture: {fileID: 8900000, guid: 855bd01d4b74df345b36ff2127d86eb0, type: 3}
+  m_BakedTexture: {fileID: 8900000, guid: b90fa8336f7f716459ae87827d63a418, type: 3}
   m_CustomTexture: {fileID: 0}
   m_BakedRenderData:
     m_WorldToCameraRHS:
@@ -23623,13 +23623,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1463954430}
   m_LocalRotation: {x: 0.4999995, y: -0.5000001, z: -0.5000004, w: 0.5000001}
-  m_LocalPosition: {x: -30, y: -0.01, z: 30}
+  m_LocalPosition: {x: -30, y: -0.01000762, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 647412528}
   m_Father: {fileID: 303217702}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: -90}
 --- !u!114 &1463954432
 MonoBehaviour:
@@ -25361,7 +25361,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1535830670}
   m_LocalRotation: {x: 1.18491866e-11, y: 1, z: -0.0000000814604, w: 0.00014530121}
-  m_LocalPosition: {x: 0.11130688, y: 2.0000012, z: -21.39238}
+  m_LocalPosition: {x: 0.11130676, y: 2.0000012, z: -21.392462}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25555,7 +25555,7 @@ MonoBehaviour:
     camera:
       camera: 0
   m_ProxyVolume: {fileID: 0}
-  m_BakedTexture: {fileID: 8900000, guid: dd12b672614c65c42b3d50455c896be7, type: 3}
+  m_BakedTexture: {fileID: 8900000, guid: 9adb0e5a468bcbc4e85889d39fa39813, type: 3}
   m_CustomTexture: {fileID: 0}
   m_BakedRenderData:
     m_WorldToCameraRHS:
@@ -33015,7 +33015,7 @@ Transform:
   m_Children:
   - {fileID: 346857779}
   m_Father: {fileID: 303217702}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: -90}
 --- !u!114 &2019344673
 MonoBehaviour:

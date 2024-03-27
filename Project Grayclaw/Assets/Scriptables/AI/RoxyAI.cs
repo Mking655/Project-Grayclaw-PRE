@@ -32,9 +32,6 @@ public class RoxyAI : MonoBehaviour
     [SerializeField]
     [Range(0f, 1f)]
     private float destructiveness = 0.1f;
-    private float nextActionTime = 0f;
-    private Vector3 lastKnownPlayerPosition;
-    private physicalEndpoint targetedEndpoint;
     [SerializeField]
     private LayerMask playerLayer;
     [SerializeField]
@@ -45,6 +42,13 @@ public class RoxyAI : MonoBehaviour
     private float viewAngle;
     [SerializeField]
     private string systemToTarget = "Untagged"; // Tag of the system endpoints to disrupt
+    private float nextActionTime = 0f;
+    private Vector3 lastKnownPlayerPosition;
+    private physicalEndpoint targetedEndpoint;
+
+    private Vector2 velocity;
+    private Vector2 smoothDeltaPostion;
+
     private void Awake()
     {
         levelData = FindAnyObjectByType<map>().data;
@@ -69,6 +73,9 @@ public class RoxyAI : MonoBehaviour
                 Debug.LogError("No defined NavMeshAgent for Roxanne Wolf");
             }
         }
+        animator.applyRootMotion = true;
+        navMeshAgent.updatePosition = false;
+        navMeshAgent.updateRotation = true;
         //Here so idling script will initially work
         navMeshAgent.destination = transform.position;
     }
@@ -87,8 +94,46 @@ public class RoxyAI : MonoBehaviour
                 Disrupt();
                 break;
         }
+        SyncronizeAnimatorAndAgent();
     }
+    private void OnAnimatorMove()
+    {
+        Vector3 rootPosition = animator.rootPosition;
+        rootPosition.y = navMeshAgent.nextPosition.y;//keep height syncronized
+        transform.position = rootPosition;//could do rotation here to
+        navMeshAgent.nextPosition = rootPosition;
+    }
+    private void SyncronizeAnimatorAndAgent()
+    {
+        Vector3 worldDeltaPostiton = navMeshAgent.nextPosition - transform.position;
+        worldDeltaPostiton.y = 0; // modify if jumping
 
+        float dx = Vector3.Dot(transform.right, worldDeltaPostiton);
+        float dy = Vector3.Dot(transform.forward, worldDeltaPostiton);
+        Vector2 deltaPostion = new Vector2(dx, dy);
+        //For varible framerate
+        float smooth = Mathf.Min(1, Time.deltaTime / 0.1f);
+        smoothDeltaPostion = Vector2.Lerp(smoothDeltaPostion, deltaPostion, smooth);
+
+        velocity = smoothDeltaPostion / Time.deltaTime;
+        //slow  down
+        if(navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        {
+            velocity = Vector2.Lerp(Vector2.zero, velocity, navMeshAgent.remainingDistance/navMeshAgent.stoppingDistance);
+        }
+        //from idle to moving
+        bool shouldMove = velocity.magnitude > 0.5f && navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance;
+
+
+        animator.SetBool("Move", shouldMove);
+        animator.SetFloat("Velocity", velocity.magnitude); // for one dimensional
+
+        float deltaMagnitude = worldDeltaPostiton.magnitude;
+        if(deltaMagnitude > navMeshAgent.radius / 2f)
+        {
+            transform.position = Vector3.Lerp(animator.rootPosition, navMeshAgent.nextPosition, smooth);
+        }
+    }
     private void Idle()
     {
         // Check if Roxy has reached her destination or if it's time to choose a new destination
@@ -114,8 +159,6 @@ public class RoxyAI : MonoBehaviour
                 nextActionTime = -1;
             }
         }
-        // Update the animator based on the NavMeshAgent's velocity
-        animator.SetFloat("Velocity", navMeshAgent.velocity.magnitude);
 
         // Check for player visibility to potentially switch to chasing
         if (CheckForPlayer() != null)
@@ -127,7 +170,6 @@ public class RoxyAI : MonoBehaviour
     private void Chase()
     {
         Collider playerCollider = CheckForPlayer();
-        animator.SetFloat("Velocity", 1); // Assume max velocity for chasing
         //If player detected
         if (playerCollider != null)
         {
@@ -142,7 +184,6 @@ public class RoxyAI : MonoBehaviour
             if (playerCollider == null)
             {
                 currentState = State.idling;
-                animator.SetFloat("Velocity", 0);
             }
         }
     }
@@ -233,7 +274,6 @@ public class RoxyAI : MonoBehaviour
             targetedEndpoint = null;
             currentState = State.idling;
         }
-        animator.SetFloat("Velocity", navMeshAgent.velocity.magnitude);
         // Check for player visibility to potentially switch to chasing
         if (CheckForPlayer() != null)
         {

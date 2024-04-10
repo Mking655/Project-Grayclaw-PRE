@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Simmaler to PlayerPrefs, but contains all the game-specific settings the player has defined instead
-/// </summary>
 public static class PlayerSettings
 {
-    /// <summary>
-    /// FOV when player is in first person mode
-    /// </summary>
-    public static int FOV = 80;
-    /// <summary>
-    /// FOV when player is in interacting mode
-    /// </summary>
-    public static int InteractingFOV = 45;
+    private const string FovKey = "FOV";
+    private const string InteractingFovKey = "InteractingFOV";
+
+    public static int FOV
+    {
+        get => PlayerPrefs.GetInt(FovKey, 80); // Default FOV is 80
+        set => PlayerPrefs.SetInt(FovKey, value);
+    }
+
+    public static int InteractingFOV
+    {
+        get => PlayerPrefs.GetInt(InteractingFovKey, 45); // Default Interacting FOV is 45
+        set => PlayerPrefs.SetInt(InteractingFovKey, value);
+    }
+
+    // Call this when you want to save changes
+    public static void Save()
+    {
+        PlayerPrefs.Save();
+    }
 }

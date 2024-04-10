@@ -30,7 +30,7 @@ Step 5: Setup Systems
 
 Step 6: Lighting
 - Place and configure lights throughout your scene. Choose between realtime, baked, or mixed lighting modes.
-- Once all lights are placed and configured, bake your scene's lightmaps through Unity's Lighting window.
+- Once all lights are placed and configured, add your light probe volumes.
 
 Step 7: AI Characters
 - (To be defined later)

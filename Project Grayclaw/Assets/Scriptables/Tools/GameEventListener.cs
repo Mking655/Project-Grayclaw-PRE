@@ -50,4 +50,9 @@ public class GameEventListener : MonoBehaviour
             gameEvent.RemoveListener(this);
         }
     }
+    //for animation events
+    public void triggerEvent()
+    {
+        gameEvent.TriggerEvent();
+    }
 }

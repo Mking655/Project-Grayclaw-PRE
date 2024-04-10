@@ -11,6 +11,7 @@ public class POVManager : Singleton<POVManager>
     public List<POV> POVs = new List<POV>();
     [HideInInspector]
     public POV previousActivePOV;
+    [SerializeField]
     private POV activePOV;
     void Awake()
     {
@@ -28,6 +29,12 @@ public class POVManager : Singleton<POVManager>
             p.deactivate();
         }
         changePOV(startingPOV);
+    }
+    //Could have an int passed in corresponding to the cause of death
+    public void die()
+    {
+        Debug.Log("You died");
+        Destroy(cam); cam = null;
     }
     public POV getActivePOV()
     {

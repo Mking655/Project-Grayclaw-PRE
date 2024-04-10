@@ -59,9 +59,5 @@ public class physicalEndpoint : MonoBehaviour
             endpoint.ChangeState(EndpointState.Vulnerable);
             //isBroken = false;
         }
-        else
-        {
-            Debug.Log("endpoint not broken, cannot fix");
-        }
     }
 }

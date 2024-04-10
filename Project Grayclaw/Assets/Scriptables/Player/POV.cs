@@ -32,6 +32,10 @@ public class POV: MonoBehaviour
     { 
         activateEvent.Invoke(); 
     }
+    public void changeManagerStateToThis()
+    {
+        manager.changePOV(this);
+    }
     private void OnDestroy()
     {
         if (manager != null)

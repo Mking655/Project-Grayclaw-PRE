@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 /// <summary>
 /// Controls Roxanne Wolf's behavior in the scene
@@ -16,12 +15,15 @@ public class RoxyAI : MonoBehaviour
     private Animator animator;
     [SerializeField]
     private NavMeshAgent navMeshAgent;
+    [SerializeField]
+    private POV jumpscarePOV;
     // Assuming the following additional states are defined:
     public enum State
     {
         idling,
         chasing,
-        disrupting
+        disrupting,
+        killing
     }
 
     [SerializeField]
@@ -45,6 +47,7 @@ public class RoxyAI : MonoBehaviour
     private float nextActionTime = 0f;
     private Vector3 lastKnownPlayerPosition;
     private physicalEndpoint targetedEndpoint;
+    private POVManager playerManager;
 
     private Vector2 velocity;
     private Vector2 smoothDeltaPostion;
@@ -73,6 +76,8 @@ public class RoxyAI : MonoBehaviour
                 Debug.LogError("No defined NavMeshAgent for Roxanne Wolf");
             }
         }
+        //Consider making this a serializeable varible defined in the inspector
+        playerManager = FindAnyObjectByType<POVManager>();
         animator.applyRootMotion = true;
         navMeshAgent.updatePosition = false;
         navMeshAgent.updateRotation = true;
@@ -82,6 +87,7 @@ public class RoxyAI : MonoBehaviour
 
     private void Update()
     {
+        SyncronizeAnimatorAndAgent();
         switch (currentState)
         {
             case State.idling:
@@ -93,8 +99,11 @@ public class RoxyAI : MonoBehaviour
             case State.disrupting:
                 Disrupt();
                 break;
+            case State.killing:
+                //do not continue past this
+                kill();
+                return;
         }
-        SyncronizeAnimatorAndAgent();
     }
     private void OnAnimatorMove()
     {
@@ -134,6 +143,14 @@ public class RoxyAI : MonoBehaviour
             transform.position = Vector3.Lerp(animator.rootPosition, navMeshAgent.nextPosition, smooth);
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.tag);
+        if(other.CompareTag("Player"))
+        {
+            currentState = State.killing;
+        }
+    }
     private void Idle()
     {
         // Check if Roxy has reached her destination or if it's time to choose a new destination
@@ -166,6 +183,19 @@ public class RoxyAI : MonoBehaviour
             currentState = State.chasing;
         }
     }
+    private void kill()
+    {
+        if (playerManager.getActivePOV() != jumpscarePOV)
+        {
+            playerManager.changePOV(jumpscarePOV);
+            navMeshAgent.destination = transform.position;
+            navMeshAgent.isStopped = true;
+            jumpscarePOV.GetComponent<Animator>().SetTrigger("start");
+            animator.SetTrigger("Kill");
+            //start the camera jumpscare animation, which triggers player death event.
+            
+        }
+    }
 
     private void Chase()
     {
@@ -180,7 +210,6 @@ public class RoxyAI : MonoBehaviour
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {
             // Recheck for player visibility here could potentially be optimized away or integrated differently.
-            Debug.Log(playerCollider != null ? "found you" : "I'll find you eventually");
             if (playerCollider == null)
             {
                 currentState = State.idling;

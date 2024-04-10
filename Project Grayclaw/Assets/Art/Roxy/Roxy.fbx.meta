@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Body.003
+    second: {fileID: 2100000, guid: 7aff532cf242c394791f08bf8bd50fc2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Eyes
     second: {fileID: 2100000, guid: 843ae80ed0d3ced41aa0ee15c235edd3, type: 2}
   - first:
@@ -57,7 +62,7 @@ ModelImporter:
       takeName: Armature|Animations
       internalID: -3852590933545650765
       firstFrame: 0
-      lastFrame: 179
+      lastFrame: 213
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -114,8 +119,66 @@ ModelImporter:
       name: Walk
       takeName: Armature|Animations
       internalID: 5536934815555104392
-      firstFrame: 139
-      lastFrame: 179
+      firstFrame: 140
+      lastFrame: 180
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 179
+    - serializedVersion: 16
+      name: Jumpscare
+      takeName: Armature|Animations
+      internalID: -4646146079564710707
+      firstFrame: 181
+      lastFrame: 199
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 179
+    - serializedVersion: 16
+      name: Run
+      takeName: Armature|Animations
+      internalID: 5579572372166395941
+      firstFrame: 200
+      lastFrame: 213
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

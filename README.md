@@ -1,4 +1,3 @@
-THIS REPO IS NO LONGER UPDATED. ALL THE CHANGES HERE WERE MADE DURING THE PRE PRODUCTION PHASE OF THIS GAME FROM AUGUST 2023 TO APRIL 2024
 # SecurityBreach-Project-Grayclaw
 Welcome to SecurityBreach-Project-Grayclaw! The ruins of the Pizza Plex have been acquired and re-built by a mysterious corporation. Their intentions remain unknown, but ever since reconstruction, things haven't been quite right. Old, familiar threats have been disposed of, but new, unknown ones have taken their place. Are you ready to uncover the horrors in this new age of FNAF?
 
